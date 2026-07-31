@@ -1,0 +1,37 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="nmwLogoTitle">
+  <title id="nmwLogoTitle">NMW — Caffè | Galerie | Boutique — No Matter What</title>
+
+  <text
+    x="512"
+    y="392"
+    text-anchor="middle"
+    font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+    font-weight="600"
+    font-size="148"
+    letter-spacing="20"
+    fill="#15130F"
+  >NMW</text>
+
+  <text
+    x="512"
+    y="508"
+    text-anchor="middle"
+    font-family="'EB Garamond', Georgia, 'Times New Roman', serif"
+    font-weight="400"
+    font-size="42"
+    fill="#15130F"
+  >caffè&#160;&#160;|&#160;&#160;galerie&#160;&#160;|&#160;&#160;boutique</text>
+
+  <line x1="248" y1="548" x2="776" y2="548" stroke="#B9B2A4" stroke-width="1.5" />
+
+  <text
+    x="512"
+    y="607"
+    text-anchor="middle"
+    font-family="'EB Garamond', Georgia, 'Times New Roman', serif"
+    font-weight="400"
+    font-style="italic"
+    font-size="38"
+    fill="#15130F"
+  >No Matter What</text>
+</svg>

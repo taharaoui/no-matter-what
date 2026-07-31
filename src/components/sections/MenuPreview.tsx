@@ -1,14 +1,17 @@
 "use client";
 
+import Link from "next/link";
 import { useReveal } from "@/lib/useReveal";
 
-const MENU = [
-  { name: "Espresso", desc: "Mélange maison, torréfié en petit lot", price: "3,75" },
-  { name: "Cortado", desc: "Espresso, lait vapeur à parts égales", price: "4,75" },
-  { name: "Filtre du jour", desc: "Origine unique, changée chaque semaine", price: "5,25" },
-  { name: "Chocolat chaud", desc: "Cacao fondu, sans mélange en poudre", price: "5,50" },
-  { name: "Thé à la théière", desc: "Sélection en feuilles, infusion lente", price: "5,00" },
-  { name: "Pâtisserie du jour", desc: "Four maison, recette en évolution", price: "4,50" },
+/* A hand-picked spread across the carte, not the whole thing — the full
+   list lives at /menu. Pulled straight from the real menu data. */
+const PREVIEW = [
+  { name: "Espresso", price: "2,85" },
+  { name: "Cappuccino", price: "4,75" },
+  { name: "Croissant classique", price: "3,50" },
+  { name: "La Burrata", desc: "Burrata, prosciutto, pesto, mélange de tomates, glaçage balsamique", price: "18,95" },
+  { name: "Poulet toscan", desc: "Poulet, pesto-basilic, roquette, citron, stracciatella", price: "14,95" },
+  { name: "Panzanella à la burrata", desc: "Salade & roquette, tomates NMW, concombre, burrata, croûtons", price: "15,95" },
 ];
 
 export default function MenuPreview() {
@@ -19,23 +22,23 @@ export default function MenuPreview() {
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <div className="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
           <div>
-            <p className="font-utility text-[11px] uppercase tracking-[0.2em] text-walnut mb-4">
+            <p className="font-utility text-[11px] uppercase tracking-[0.2em] text-grey-700 mb-4">
               Au menu
             </p>
             <h2 className="font-display text-4xl md:text-5xl leading-tight">
               Simple, <span className="italic">fait avec soin.</span>
             </h2>
           </div>
-          <a
-            href="#visite"
+          <Link
+            href="/menu"
             className="font-utility text-[11px] uppercase tracking-[0.16em] border-b border-ink pb-1 self-start md:self-auto w-fit"
           >
             Menu complet
-          </a>
+          </Link>
         </div>
 
         <div className="grid md:grid-cols-2 gap-x-16">
-          {MENU.map((item, i) => (
+          {PREVIEW.map((item, i) => (
             <div
               key={item.name}
               className="reveal flex items-baseline gap-4 py-5 border-b border-ink/10"
@@ -43,9 +46,11 @@ export default function MenuPreview() {
             >
               <div className="flex-1">
                 <p className="font-display text-lg">{item.name}</p>
-                <p className="text-sm text-ink-soft/70 mt-1">{item.desc}</p>
+                {item.desc && (
+                  <p className="text-[0.95rem] leading-snug text-ink-soft/70 mt-1">{item.desc}</p>
+                )}
               </div>
-              <p className="font-utility text-sm text-walnut whitespace-nowrap">{item.price} $</p>
+              <p className="font-utility text-sm text-grey-700 whitespace-nowrap">{item.price} $</p>
             </div>
           ))}
         </div>

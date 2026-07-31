@@ -1,15 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --color-ink: #201c17;
-  --color-ink-soft: #37312a;
-  --color-paper: #e8e3d6;
-  --color-paper-light: #f4f1e8;
-  --color-walnut: #6b4a32;
-  --color-walnut-deep: #4a3220;
-  --color-sage: #545b47;
-  --color-sage-deep: #3b4033;
-  --color-brass: #b08d4f;
+  /* Strict two-tone system, grounded in the logo (public/nmw-logo.svg):
+     ink matches its fill (#15130F) exactly; paper is a warm off-white,
+     never pure black or white. One neutral grey scale sits between them
+     for borders, secondary text, and label voice — no added hue anywhere. */
+  --color-ink: #15130f;
+  --color-paper: #f7f6f2;
+  --color-paper-light: #fcfbf9;
+  --color-ink-soft: #433f37;
+
+  --color-grey-100: #e5e5e5;
+  --color-grey-300: #b8b8b8;
+  --color-grey-500: #868686;
+  --color-grey-700: #474747;
+  --color-grey-900: #212121;
 }
 
 @theme inline {
@@ -17,11 +22,12 @@
   --color-ink-soft: var(--color-ink-soft);
   --color-paper: var(--color-paper);
   --color-paper-light: var(--color-paper-light);
-  --color-walnut: var(--color-walnut);
-  --color-walnut-deep: var(--color-walnut-deep);
-  --color-sage: var(--color-sage);
-  --color-sage-deep: var(--color-sage-deep);
-  --color-brass: var(--color-brass);
+
+  --color-grey-100: var(--color-grey-100);
+  --color-grey-300: var(--color-grey-300);
+  --color-grey-500: var(--color-grey-500);
+  --color-grey-700: var(--color-grey-700);
+  --color-grey-900: var(--color-grey-900);
 
   --font-display: var(--font-display);
   --font-body: var(--font-body);
@@ -32,16 +38,39 @@ html {
   scroll-behavior: smooth;
 }
 
+/* EB Garamond runs small and light for a screen body face — it needs a
+   size and leading bump to hold up next to Playfair. Set on body rather
+   than :root so Tailwind's rem-based utilities keep their normal scale. */
 body {
-  font-family: var(--font-body), sans-serif;
+  font-family: var(--font-body), serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
 }
 
 .font-display {
   font-family: var(--font-display), serif;
 }
 
+.font-body {
+  font-family: var(--font-body), serif;
+}
+
 .font-utility {
   font-family: var(--font-utility), monospace;
+}
+
+/* Playfair's high contrast gets brittle at large sizes with default
+   tracking; pull it in slightly wherever it runs big. */
+.font-display {
+  letter-spacing: -0.012em;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 /* Subtle grain overlay — gives flat colour fields a physical, printed texture
@@ -79,6 +108,6 @@ body {
 }
 
 ::selection {
-  background: var(--color-brass);
-  color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-paper);
 }

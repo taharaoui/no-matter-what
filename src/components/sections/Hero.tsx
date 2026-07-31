@@ -1,30 +1,53 @@
+import Image from "next/image";
+import Logo from "@/components/brand/Logo";
+
 export default function Hero() {
   return (
     <section
       id="top"
       className="relative min-h-screen flex flex-col justify-end overflow-hidden bg-ink text-paper-light grain"
     >
-      {/* Ambient warmth: a slow, quiet radial glow — the only motion on load */}
+      {/* The room itself, behind the mark — the barista, the gallery wall,
+          the space the rest of the copy is talking about. */}
+      <Image
+        src="/images/equipe-cappuccino.jpg"
+        alt="Le café NMW, préparation d'un cappuccino devant les œuvres de la galerie"
+        fill
+        priority
+        className="object-cover object-[70%_30%]"
+      />
+
+      {/* Ink scrim so the mark and copy stay legible over the photo —
+          darkest at the bottom where the text sits, lighter toward the top. */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/30" />
+
+      {/* Ambient light: a slow, quiet radial glow, re-aimed at where the
+          mark actually sits so it lights it rather than the empty middle.
+          Paper-toned, not accent-toned — the only "warmth" left is light. */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-40"
+        className="pointer-events-none absolute inset-0 opacity-30"
         style={{
           background:
-            "radial-gradient(60% 50% at 50% 20%, rgba(176,141,79,0.18) 0%, rgba(32,28,23,0) 70%)",
+            "radial-gradient(55% 45% at 28% 55%, rgba(247,246,242,0.08) 0%, rgba(21,19,15,0) 70%)",
         }}
       />
 
-      <div className="relative mx-auto w-full max-w-7xl px-6 md:px-10 pt-40 pb-24 md:pb-32">
-        <p className="font-utility text-[11px] uppercase tracking-[0.2em] text-brass mb-6">
-          Café · Galerie · Boutique — Montréal
-        </p>
+      {/* The signature moment: the mark itself, at scale, in the material
+          it is printed on. The page previously set "No Matter What" as a
+          display headline — type imitating a logo that already existed.
+          The real signature does that job better, and says caffè · galerie ·
+          boutique in the same breath, so the eyebrow line it used to need
+          is gone.
 
-        <h1 className="font-display font-light leading-[0.95] text-[15vw] md:text-[7.5vw] lg:text-[6.5vw]">
-          No Matter
-          <br />
-          <span className="italic text-brass">What.</span>
+          It keeps the bottom-left anchor the hero was already built on
+          rather than centring: a mark floating in the middle of a dark
+          field is a logo presentation, not a storefront. */}
+      <div className="relative mx-auto w-full max-w-7xl px-6 md:px-10 pt-40 pb-14 md:pb-20">
+        <h1 className="w-[min(64vw,460px)] mb-14 md:mb-20">
+          <Logo variant="lockup" className="w-full h-auto" />
         </h1>
 
-        <div className="mt-10 md:mt-14 flex flex-col md:flex-row md:items-end md:justify-between gap-8 border-t border-paper-light/15 pt-8">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 border-t border-paper-light/20 pt-8">
           <p className="max-w-md text-paper-light/75 leading-relaxed">
             Un grand-père qui a commencé avec un comptoir et une théière. Trois
             générations plus tard, un même mot d&apos;ordre : peu importe.
@@ -39,7 +62,7 @@ export default function Hero() {
               Découvrir l&apos;histoire
               <span className="absolute left-0 -bottom-1 h-px w-full bg-paper-light/40 origin-left scale-x-100 transition-transform group-hover:scale-x-0" />
             </span>
-            <span className="inline-block h-8 w-8 rounded-full border border-paper-light/30 grid place-items-center transition-colors group-hover:border-brass group-hover:text-brass">
+            <span className="inline-block h-8 w-8 rounded-full border border-paper-light/30 grid place-items-center transition-colors group-hover:border-paper-light group-hover:text-paper-light">
               ↓
             </span>
           </a>
