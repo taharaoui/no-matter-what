@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useReveal } from "@/lib/useReveal";
 
@@ -34,7 +35,14 @@ export default function Gallery() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
           <div className="reveal col-span-2 row-span-2 aspect-[4/5] relative overflow-hidden grain bg-gradient-to-br from-grey-700 to-ink" />
-          <div className="reveal aspect-square relative overflow-hidden grain bg-gradient-to-br from-grey-500 to-ink" />
+          <div className="reveal aspect-square relative overflow-hidden grain">
+            <Image
+              src="/images/galerie-portrait-1.jpg"
+              alt="Portrait, accrochage en cours à la galerie NMW"
+              fill
+              className="object-cover object-[35%_30%]"
+            />
+          </div>
           <div className="reveal aspect-square relative overflow-hidden grain bg-gradient-to-br from-grey-300/70 to-ink" />
           <div className="reveal aspect-square relative overflow-hidden grain bg-gradient-to-br from-grey-900 to-ink" style={{ transitionDelay: "80ms" }} />
           <div className="reveal aspect-square relative overflow-hidden grain bg-gradient-to-br from-grey-700 to-ink" style={{ transitionDelay: "80ms" }} />

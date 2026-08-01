@@ -6,9 +6,9 @@ import { useReveal } from "@/lib/useReveal";
 
 /* The site's concept condensed into one screen — replaces what used to be
    two separate, redundant beats ("notre univers" / "les trois expériences").
-   Four pillars, not three: la fleuristerie has its own real photography and
-   its own revenue line (précommandes), it earns its own card rather than a
-   line of text under "boutique". */
+   Four distinct pillars, each with a clear boundary: la galerie n'expose que
+   des tableaux, la boutique que des articles/merch, les fleurs sont leur
+   propre univers plutôt qu'une ligne sous "boutique". */
 
 const PILLARS = [
   {
@@ -21,19 +21,20 @@ const PILLARS = [
     name: "Galerie",
     text: "Un accrochage d'artistes montréalais, en rotation.",
     href: "/galerie",
-    tone: "bg-gradient-to-br from-grey-700 to-ink",
+    image: "/images/galerie-portrait-1.jpg",
+    imagePosition: "object-[35%_30%]",
   },
   {
     name: "Boutique",
-    text: "Céramique, cafetières, objets choisis pour durer.",
+    text: "Articles choisis, et la prochaine collection NMW.",
     href: "/boutique",
-    image: "/images/boutique-bouquet-roses.jpg",
+    tone: "bg-gradient-to-br from-grey-500 to-ink",
   },
   {
-    name: "Fleuriste",
+    name: "Fleurs",
     text: "Roses éternelles, bouquets sur précommande.",
-    href: "/boutique",
-    image: "/images/boutique-precommande-roses.jpg",
+    href: "/fleurs",
+    image: "/images/fleurs-precommande-roses.jpg",
   },
 ] as const;
 
@@ -70,7 +71,9 @@ export default function Pillars() {
                     src={pillar.image}
                     alt={pillar.name}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    className={`object-cover transition-transform duration-500 group-hover:scale-[1.03] ${
+                      "imagePosition" in pillar ? pillar.imagePosition : ""
+                    }`}
                   />
                 )}
               </div>

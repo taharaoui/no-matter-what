@@ -60,14 +60,24 @@ export default function Visit() {
         </div>
       </section>
 
-      <div className="reveal aspect-[21/9] md:aspect-[21/6] w-full grayscale contrast-[1.1]">
-        <iframe
-          src={MAPS_EMBED_URL}
-          title="NMW sur Google Maps"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          className="w-full h-full border-0"
-        />
+      <div className="grid md:grid-cols-[1fr_2.2fr]">
+        <div className="reveal relative h-72 md:h-96">
+          <Image
+            src="/images/pancarte-exterieure.jpg"
+            alt="La pancarte NMW café ♥ galerie, en façade"
+            fill
+            className="object-cover"
+          />
+        </div>
+        <div className="reveal h-72 md:h-96 grayscale contrast-[1.1]">
+          <iframe
+            src={MAPS_EMBED_URL}
+            title="NMW sur Google Maps"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="w-full h-full border-0"
+          />
+        </div>
       </div>
     </div>
   );

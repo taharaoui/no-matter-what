@@ -15,7 +15,7 @@ const SHOTS = [
   { image: "/images/menu-matcha-1.jpg", alt: "Matcha latté" },
   { image: "/images/menu-porchetta.jpg", alt: "Sandwich porchetta" },
   { image: "/images/menu-matcha-2.jpg", alt: "Matcha lavande" },
-  { image: "/images/boutique-rose-eternelle.jpg", alt: "Rose éternelle" },
+  { image: "/images/fleurs-rose-eternelle.jpg", alt: "Rose éternelle" },
   { image: "/images/menu-matcha-3.jpg", alt: "Matcha fraise & vanille" },
   { image: "/images/equipe-cappuccino.jpg", alt: "Latte art au comptoir" },
 ];

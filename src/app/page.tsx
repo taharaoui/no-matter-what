@@ -5,6 +5,7 @@ import Lineage from "@/components/sections/Lineage";
 import MenuPreview from "@/components/sections/MenuPreview";
 import Gallery from "@/components/sections/Gallery";
 import Boutique from "@/components/sections/Boutique";
+import Fleurs from "@/components/sections/Fleurs";
 import Events from "@/components/sections/Events";
 import InstagramFeed from "@/components/sections/InstagramFeed";
 import Visit from "@/components/sections/Visit";
@@ -19,6 +20,7 @@ export default function Home() {
       <MenuPreview />
       <Gallery />
       <Boutique />
+      <Fleurs />
       <Events />
       <InstagramFeed />
       <Visit />
