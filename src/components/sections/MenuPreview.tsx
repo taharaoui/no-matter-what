@@ -1,17 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useReveal } from "@/lib/useReveal";
 
-/* A hand-picked spread across the carte, not the whole thing — the full
-   list lives at /menu. Pulled straight from the real menu data. */
-const PREVIEW = [
-  { name: "Espresso", price: "2,85" },
-  { name: "Cappuccino", price: "4,75" },
-  { name: "Croissant classique", price: "3,50" },
-  { name: "La Burrata", desc: "Burrata, prosciutto, pesto, mélange de tomates, glaçage balsamique", price: "18,95" },
-  { name: "Poulet toscan", desc: "Poulet, pesto-basilic, roquette, citron, stracciatella", price: "14,95" },
-  { name: "Panzanella à la burrata", desc: "Salade & roquette, tomates NMW, concombre, burrata, croûtons", price: "15,95" },
+/* The homepage's one gourmand moment — photos, not a price list. The full
+   carte at /menu stays text-only on purpose (a printed bill of fare); here,
+   the job is appetite, not reference. Three real, new items carry it. */
+const SIGNATURE = [
+  { name: "Porchetta", desc: "Le nouveau sandwich chez NMW", image: "/images/menu-porchetta.jpg" },
+  { name: "Crosti'Croissant", desc: "Grilled cheese dans un croissant", image: "/images/menu-crosti-croissants.jpg" },
+  { name: "Cappuccino glacé", desc: "Mousse froide, servi sur glace", image: "/images/menu-cappuccino-glace.jpg" },
 ];
 
 export default function MenuPreview() {
@@ -20,7 +19,7 @@ export default function MenuPreview() {
   return (
     <section id="menu" ref={ref} className="bg-paper text-ink py-28 md:py-36">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
-        <div className="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+        <div className="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
           <div>
             <p className="font-utility text-[11px] uppercase tracking-[0.2em] text-grey-700 mb-4">
               Au menu
@@ -37,20 +36,19 @@ export default function MenuPreview() {
           </Link>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-x-16">
-          {PREVIEW.map((item, i) => (
-            <div
-              key={item.name}
-              className="reveal flex items-baseline gap-4 py-5 border-b border-ink/10"
-              style={{ transitionDelay: `${(i % 3) * 80}ms` }}
-            >
-              <div className="flex-1">
-                <p className="font-display text-lg">{item.name}</p>
-                {item.desc && (
-                  <p className="text-[0.95rem] leading-snug text-ink-soft/70 mt-1">{item.desc}</p>
-                )}
+        <div className="grid md:grid-cols-3 gap-8 md:gap-6">
+          {SIGNATURE.map((item, i) => (
+            <div key={item.name} className="reveal group" style={{ transitionDelay: `${i * 100}ms` }}>
+              <div className="relative aspect-[4/5] overflow-hidden grain border border-ink/10">
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                />
               </div>
-              <p className="font-utility text-sm text-grey-700 whitespace-nowrap">{item.price} $</p>
+              <p className="mt-5 font-display text-xl">{item.name}</p>
+              <p className="mt-1 text-[0.9rem] text-ink-soft/70 leading-snug">{item.desc}</p>
             </div>
           ))}
         </div>

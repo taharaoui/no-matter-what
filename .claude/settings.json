@@ -5,7 +5,10 @@
       "Bash(npx eslint *)",
       "Bash(echo \"EXIT:$?\")",
       "Bash(node node_modules/typescript/bin/tsc --noEmit)",
-      "Bash(echo \"TSC EXIT:$?\")"
+      "Bash(echo \"TSC EXIT:$?\")",
+      "Bash(pkill -9 -f \"next dev\")",
+      "Bash(node node_modules/next/dist/bin/next build)",
+      "Bash(echo \"BUILD EXIT:$?\")"
     ]
   }
 }

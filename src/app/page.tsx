@@ -1,18 +1,26 @@
 import Hero from "@/components/sections/Hero";
+import Manifesto from "@/components/sections/Manifesto";
+import Pillars from "@/components/sections/Pillars";
 import Lineage from "@/components/sections/Lineage";
-import Philosophy from "@/components/sections/Philosophy";
 import MenuPreview from "@/components/sections/MenuPreview";
-import GalleryBoutique from "@/components/sections/GalleryBoutique";
+import Gallery from "@/components/sections/Gallery";
+import Boutique from "@/components/sections/Boutique";
+import Events from "@/components/sections/Events";
+import InstagramFeed from "@/components/sections/InstagramFeed";
 import Visit from "@/components/sections/Visit";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <Manifesto />
+      <Pillars />
       <Lineage />
-      <Philosophy />
       <MenuPreview />
-      <GalleryBoutique />
+      <Gallery />
+      <Boutique />
+      <Events />
+      <InstagramFeed />
       <Visit />
     </>
   );
