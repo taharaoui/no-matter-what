@@ -33,6 +33,22 @@ export default function Hero() {
         }}
       />
 
+      {/* A pinned photo, not a second background — proof the mark on the
+          wall is a real storefront. Kept small and off to the side so the
+          room behind the mark stays the dominant image. */}
+      <div className="hidden md:block absolute top-28 right-6 lg:right-10 w-44 lg:w-52 rotate-[2deg] shadow-2xl">
+        <div className="relative aspect-[4/3] bg-paper-light p-2 pb-6">
+          <div className="relative h-full w-full overflow-hidden">
+            <Image
+              src="/images/pancarte-exterieure.jpg"
+              alt="La pancarte NMW café ♥ galerie, en façade"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </div>
+
       {/* The signature moment: the mark itself, at scale, in the material
           it is printed on. The page previously set "No Matter What" as a
           display headline — type imitating a logo that already existed.
@@ -63,7 +79,7 @@ export default function Hero() {
               Découvrir l&apos;histoire
               <span className="absolute left-0 -bottom-1 h-px w-full bg-paper-light/40 origin-left scale-x-100 transition-transform group-hover:scale-x-0" />
             </span>
-            <span className="inline-block h-8 w-8 rounded-full border border-paper-light/30 grid place-items-center transition-colors group-hover:border-paper-light group-hover:text-paper-light">
+            <span className="inline-block h-8 w-8 rounded-full border border-paper-light/30 grid place-items-center transition-all duration-300 group-hover:border-paper-light group-hover:text-paper-light group-hover:translate-x-1">
               →
             </span>
           </Link>

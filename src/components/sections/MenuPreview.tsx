@@ -8,9 +8,9 @@ import { useReveal } from "@/lib/useReveal";
    carte at /menu stays text-only on purpose (a printed bill of fare); here,
    the job is appetite, not reference. Three real, new items carry it. */
 const SIGNATURE = [
-  { name: "Porchetta", desc: "Le nouveau sandwich chez NMW", image: "/images/menu-porchetta.jpg" },
-  { name: "Crosti'Croissant", desc: "Grilled cheese dans un croissant", image: "/images/menu-crosti-croissants.jpg" },
-  { name: "Cappuccino glacé", desc: "Mousse froide, servi sur glace", image: "/images/menu-cappuccino-glace.jpg" },
+  { name: "Porchetta", desc: "Le nouveau sandwich chez NMW", image: "/images/menu-porchetta.jpg", href: "/menu#sandwichs" },
+  { name: "Crosti'Croissant", desc: "Grilled cheese dans un croissant", image: "/images/menu-crosti-croissants.jpg", href: "/menu#crosti-croissants" },
+  { name: "Cappuccino glacé", desc: "Mousse froide, servi sur glace", image: "/images/menu-cappuccino-glace.jpg", href: "/menu#cafes-glaces" },
 ];
 
 export default function MenuPreview() {
@@ -38,7 +38,12 @@ export default function MenuPreview() {
 
         <div className="grid md:grid-cols-3 gap-8 md:gap-6">
           {SIGNATURE.map((item, i) => (
-            <div key={item.name} className="reveal group" style={{ transitionDelay: `${i * 100}ms` }}>
+            <Link
+              key={item.name}
+              href={item.href}
+              className="reveal group block"
+              style={{ transitionDelay: `${i * 100}ms` }}
+            >
               <div className="relative aspect-[4/5] overflow-hidden grain border border-ink/10">
                 <Image
                   src={item.image}
@@ -46,10 +51,14 @@ export default function MenuPreview() {
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="absolute bottom-4 left-4 font-utility text-[11px] uppercase tracking-[0.16em] text-paper-light opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                  Voir au menu →
+                </span>
               </div>
               <p className="mt-5 font-display text-xl">{item.name}</p>
               <p className="mt-1 text-[0.9rem] text-ink-soft/70 leading-snug">{item.desc}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
