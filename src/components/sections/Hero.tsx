@@ -8,14 +8,14 @@ export default function Hero() {
       id="top"
       className="relative min-h-screen flex flex-col justify-end overflow-hidden bg-ink text-paper-light grain"
     >
-      {/* The room itself, behind the mark — the barista, the gallery wall,
-          the space the rest of the copy is talking about. */}
+      {/* The storefront itself, behind the mark — the hand-painted sign
+          that gives the place its name, before anything else does. */}
       <Image
-        src="/images/equipe-cappuccino.jpg"
-        alt="Le café NMW, préparation d'un cappuccino devant les œuvres de la galerie"
+        src="/images/pancarte-exterieure.jpg"
+        alt="La pancarte NMW café ♥ galerie, en façade"
         fill
         priority
-        className="object-cover object-[70%_30%]"
+        className="object-cover object-[50%_15%]"
       />
 
       {/* Ink scrim so the mark and copy stay legible over the photo —
@@ -32,22 +32,6 @@ export default function Hero() {
             "radial-gradient(55% 45% at 28% 55%, rgba(247,246,242,0.08) 0%, rgba(21,19,15,0) 70%)",
         }}
       />
-
-      {/* A pinned photo, not a second background — proof the mark on the
-          wall is a real storefront. Kept small and off to the side so the
-          room behind the mark stays the dominant image. */}
-      <div className="hidden md:block absolute top-28 right-6 lg:right-10 w-44 lg:w-52 rotate-[2deg] shadow-2xl">
-        <div className="relative aspect-[4/3] bg-paper-light p-2 pb-6">
-          <div className="relative h-full w-full overflow-hidden">
-            <Image
-              src="/images/pancarte-exterieure.jpg"
-              alt="La pancarte NMW café ♥ galerie, en façade"
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </div>
 
       {/* The signature moment: the mark itself, at scale, in the material
           it is printed on. The page previously set "No Matter What" as a
