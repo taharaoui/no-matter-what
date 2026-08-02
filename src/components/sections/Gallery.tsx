@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useReveal } from "@/lib/useReveal";
 
-/* NOTE: the grid below still stands in for real artwork photography (the
-   pieces themselves aren't shot yet — see /lib/gallery.ts). Keeping the
-   aspect ratios intact preserves the layout when real photos land. */
+/* NOTE: one square tile still stands in for real artwork photography (the
+   accrochage catalogued in /lib/gallery.ts isn't shot yet). The rest below
+   are real pieces, in place as they get photographed. */
 
 export default function Gallery() {
   const ref = useReveal<HTMLDivElement>();
@@ -34,7 +34,14 @@ export default function Gallery() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
-          <div className="reveal col-span-2 row-span-2 aspect-[4/5] relative overflow-hidden grain bg-gradient-to-br from-grey-700 to-ink" />
+          <div className="reveal col-span-2 row-span-2 aspect-[4/5] relative overflow-hidden grain">
+            <Image
+              src="/images/galerie-portrait-3.jpg"
+              alt="Portrait, accrochage en cours à la galerie NMW"
+              fill
+              className="object-cover"
+            />
+          </div>
           <div className="reveal aspect-square relative overflow-hidden grain">
             <Image
               src="/images/galerie-portrait-1.jpg"
@@ -43,9 +50,23 @@ export default function Gallery() {
               className="object-cover object-[35%_30%]"
             />
           </div>
-          <div className="reveal aspect-square relative overflow-hidden grain bg-gradient-to-br from-grey-300/70 to-ink" />
+          <div className="reveal aspect-square relative overflow-hidden grain">
+            <Image
+              src="/images/galerie-fleur-bois.jpg"
+              alt="Peinture sur bois, accrochage en cours à la galerie NMW"
+              fill
+              className="object-cover"
+            />
+          </div>
           <div className="reveal aspect-square relative overflow-hidden grain bg-gradient-to-br from-grey-900 to-ink" style={{ transitionDelay: "80ms" }} />
-          <div className="reveal aspect-square relative overflow-hidden grain bg-gradient-to-br from-grey-700 to-ink" style={{ transitionDelay: "80ms" }} />
+          <div className="reveal aspect-square relative overflow-hidden grain" style={{ transitionDelay: "80ms" }}>
+            <Image
+              src="/images/galerie-portrait-2.jpg"
+              alt="Peinture, accrochage en cours à la galerie NMW"
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
       </div>
     </section>

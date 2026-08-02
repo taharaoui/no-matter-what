@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Logo from "@/components/brand/Logo";
 
 export default function Hero() {
@@ -54,8 +55,8 @@ export default function Hero() {
             On continue.
           </p>
 
-          <a
-            href="#histoire"
+          <Link
+            href="/histoire"
             className="group inline-flex items-center gap-3 font-utility text-[11px] uppercase tracking-[0.16em] text-paper-light/85"
           >
             <span className="relative">
@@ -63,9 +64,9 @@ export default function Hero() {
               <span className="absolute left-0 -bottom-1 h-px w-full bg-paper-light/40 origin-left scale-x-100 transition-transform group-hover:scale-x-0" />
             </span>
             <span className="inline-block h-8 w-8 rounded-full border border-paper-light/30 grid place-items-center transition-colors group-hover:border-paper-light group-hover:text-paper-light">
-              ↓
+              →
             </span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

@@ -17,6 +17,9 @@ export type Chapter = {
   paragraphs: string[];
   /** One line lifted out of the chapter and set large. Optional. */
   pull?: string;
+  /** A real photo tied to this chapter. Optional — most chapters predate
+      any photography that's actually been digitized. */
+  photo?: string;
 };
 
 export const PROLOGUE =
@@ -73,5 +76,6 @@ export const CHAPTERS: Chapter[] = [
       "Le comptoir n'a pas bougé. On voit encore tout le monde depuis derrière.",
     ],
     pull: "Une extension, pas un virage.",
+    photo: "/images/famille-trois-generations.jpg",
   },
 ];

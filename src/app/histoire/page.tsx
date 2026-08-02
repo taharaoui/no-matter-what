@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import PageIntro from "@/components/layout/PageIntro";
 import Thread from "@/components/brand/Thread";
@@ -86,6 +87,17 @@ export default function HistoirePage() {
                   <p className="mt-10 border-l border-ink/40 pl-6 font-display italic text-2xl md:text-3xl leading-snug text-ink">
                     {chapter.pull}
                   </p>
+                )}
+
+                {chapter.photo && (
+                  <div className="relative mt-10 aspect-[3/4] md:aspect-[4/3] overflow-hidden grain">
+                    <Image
+                      src={chapter.photo}
+                      alt="Trois générations de la famille derrière le comptoir NMW"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 )}
               </div>
             </article>

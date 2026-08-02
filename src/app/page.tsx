@@ -1,7 +1,6 @@
 import Hero from "@/components/sections/Hero";
 import Manifesto from "@/components/sections/Manifesto";
 import Pillars from "@/components/sections/Pillars";
-import Lineage from "@/components/sections/Lineage";
 import MenuPreview from "@/components/sections/MenuPreview";
 import Gallery from "@/components/sections/Gallery";
 import Boutique from "@/components/sections/Boutique";
@@ -16,7 +15,6 @@ export default function Home() {
       <Hero />
       <Manifesto />
       <Pillars />
-      <Lineage />
       <MenuPreview />
       <Gallery />
       <Boutique />
