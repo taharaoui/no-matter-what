@@ -1,12 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useReveal } from "@/lib/useReveal";
 
 /* Boutique = objets et merch, rien d'autre. Les fleurs ont leur propre
-   section (Fleurs.tsx) — pas de photo produit réelle pour la boutique
-   elle-même pour l'instant, donc un fond texturé plutôt qu'une image
-   empruntée à un autre rayon. */
+   section (Fleurs.tsx). Une seule photo produit réelle pour l'instant
+   (la céramique) ; le second emplacement reste un fond texturé plutôt
+   qu'une image empruntée à un autre rayon. */
 
 export default function Boutique() {
   const ref = useReveal<HTMLDivElement>();
@@ -35,11 +36,27 @@ export default function Boutique() {
         </div>
 
         <div className="order-1 md:order-2 grid grid-cols-2 gap-4">
-          <div className="reveal aspect-[3/4] relative overflow-hidden grain border border-ink/10 bg-gradient-to-br from-grey-300 to-grey-700" />
+          <div className="reveal aspect-[3/4] relative overflow-hidden grain border border-ink/10">
+            <Image
+              src="/images/sculpture-1.jpg"
+              alt="Céramique sculptée, boutique NMW"
+              fill
+              className="object-cover"
+            />
+          </div>
           <div
-            className="reveal aspect-[3/4] relative overflow-hidden grain border border-ink/10 mt-8 bg-gradient-to-br from-grey-500 to-ink"
+            className="reveal aspect-[3/4] relative overflow-hidden grain border border-ink/10 mt-8"
             style={{ transitionDelay: "100ms" }}
-          />
+          >
+            {/* TEMP: stand-in placeholder, not an NMW photo — swap for the
+                real NMW shelf/merch shot when it's taken. */}
+            <Image
+              src="/images/boutique-2.jpg"
+              alt="Articles boutique"
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
       </div>
     </section>

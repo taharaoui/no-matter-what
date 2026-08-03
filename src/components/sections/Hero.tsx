@@ -8,14 +8,14 @@ export default function Hero() {
       id="top"
       className="relative min-h-screen flex flex-col justify-end overflow-hidden bg-ink text-paper-light grain"
     >
-      {/* The storefront itself, behind the mark — the hand-painted sign
-          that gives the place its name, before anything else does. */}
+      {/* The room itself, unbranded — the mark is withheld here and reserved
+          for the header, where it appears the moment you scroll. */}
       <Image
-        src="/images/pancarte-exterieure.jpg"
-        alt="La pancarte NMW café ♥ galerie, en façade"
+        src="/images/bar-cafe.jpg"
+        alt="La salle NMW — comptoir, piano et galerie"
         fill
         priority
-        className="object-cover object-[50%_15%]"
+        className="object-cover object-[45%_35%]"
       />
 
       {/* Ink scrim so the mark and copy stay legible over the photo —
@@ -34,15 +34,9 @@ export default function Hero() {
       />
 
       {/* The signature moment: the mark itself, at scale, in the material
-          it is printed on. The page previously set "No Matter What" as a
-          display headline — type imitating a logo that already existed.
-          The real signature does that job better, and says caffè · galerie ·
-          boutique in the same breath, so the eyebrow line it used to need
-          is gone.
-
-          It keeps the bottom-left anchor the hero was already built on
-          rather than centring: a mark floating in the middle of a dark
-          field is a logo presentation, not a storefront. */}
+          it is printed on. It keeps the bottom-left anchor the hero was
+          already built on rather than centring: a mark floating in the
+          middle of a dark field is a logo presentation, not a storefront. */}
       <div className="relative mx-auto w-full max-w-7xl px-6 md:px-10 pt-40 pb-14 md:pb-20">
         <h1 className="w-[min(64vw,460px)] mb-14 md:mb-20">
           <Logo variant="lockup" className="w-full h-auto" />

@@ -7,7 +7,6 @@ import Logo from "@/components/brand/Logo";
 
 const LINKS = [
   { href: "/histoire", label: "Notre Histoire" },
-  { href: "/menu", label: "Menu" },
   { href: "/galerie", label: "Galerie" },
   { href: "/boutique", label: "Boutique" },
   { href: "/fleurs", label: "Fleurs" },
@@ -62,7 +61,11 @@ export default function Header() {
         <Link
           href="/"
           aria-label="No Matter What — accueil"
-          className={`transition-colors ${solid ? "text-ink" : "text-paper-light"}`}
+          aria-hidden={!solid}
+          tabIndex={solid ? undefined : -1}
+          className={`transition-all duration-500 ${
+            solid ? "text-ink opacity-100" : "text-paper-light opacity-0 pointer-events-none"
+          }`}
         >
           <Logo className="h-[22px] w-auto" />
         </Link>
@@ -90,14 +93,14 @@ export default function Header() {
         </nav>
 
         <Link
-          href="/#visite"
+          href="/menu"
           className={`hidden md:inline-flex items-center border px-5 py-2 font-utility text-[11px] uppercase tracking-[0.16em] transition-colors ${
             solid
               ? "border-ink text-ink hover:bg-ink hover:text-paper-light"
               : "border-paper-light/70 text-paper-light hover:bg-paper-light hover:text-ink"
           }`}
         >
-          Réserver
+          Menu
         </Link>
 
         <button
@@ -132,10 +135,10 @@ export default function Header() {
             </Link>
           ))}
           <Link
-            href="/#visite"
+            href="/menu"
             className="mt-8 inline-flex items-center justify-center border border-ink px-6 py-3 font-utility text-[11px] uppercase tracking-[0.16em] text-ink"
           >
-            Réserver
+            Menu
           </Link>
         </nav>
       </div>

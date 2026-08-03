@@ -16,6 +16,7 @@ const PILLARS = [
     text: "Espresso, filtre, une carte courte tenue avec soin.",
     href: "/menu",
     image: "/images/equipe-smoothie.jpg",
+    cta: "Voir le menu",
   },
   {
     name: "Galerie",
@@ -23,18 +24,22 @@ const PILLARS = [
     href: "/galerie",
     image: "/images/galerie-portrait-1.jpg",
     imagePosition: "object-[35%_30%]",
+    cta: "Voir l'accrochage",
   },
   {
     name: "Boutique",
     text: "Articles choisis, et la prochaine collection NMW.",
     href: "/boutique",
+    image: "/images/boutique.jpg",
     tone: "bg-gradient-to-br from-grey-500 to-ink",
+    cta: "Visiter la boutique",
   },
   {
     name: "Fleurs",
     text: "Roses éternelles, bouquets sur précommande.",
     href: "/fleurs",
     image: "/images/fleurs-precommande-roses.jpg",
+    cta: "Voir les fleurs",
   },
 ] as const;
 
@@ -76,6 +81,10 @@ export default function Pillars() {
                     }`}
                   />
                 )}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="absolute bottom-4 left-4 font-utility text-[11px] uppercase tracking-[0.16em] text-paper-light opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                  {pillar.cta} →
+                </span>
               </div>
               <p className="mt-4 font-display text-xl">{pillar.name}</p>
               <p className="mt-1 text-[0.9rem] text-ink-soft/70 leading-snug">

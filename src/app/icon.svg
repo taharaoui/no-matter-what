@@ -1,0 +1,13 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NMW">
+  <rect width="64" height="64" fill="#15130F" />
+  <text
+    x="32"
+    y="39"
+    text-anchor="middle"
+    font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+    font-weight="600"
+    font-size="24"
+    letter-spacing="1"
+    fill="#F7F6F2"
+  >NMW</text>
+</svg>

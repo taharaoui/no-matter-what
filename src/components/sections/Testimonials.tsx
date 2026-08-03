@@ -1,14 +1,12 @@
 "use client";
 
+import Script from "next/script";
 import { useReveal } from "@/lib/useReveal";
 
-/* No real customer reviews exist yet. Rather than invent quotes and names
-   — which would break the no-fabrication rule kept everywhere else on this
-   site — the three slots ship as a visible pending state: honest about
-   being empty, ready to take real testimonials the moment they're
-   collected. Replace SLOTS' content with real quotes when they exist. */
-
-const SLOTS = [1, 2, 3];
+/* Real Google reviews via Elfsight — replaces the earlier "coming soon"
+   placeholder now that there's an actual source to embed instead of
+   invented quotes. The widget script loads once the page is interactive;
+   the widget itself lazy-loads its content (data-elfsight-app-lazy). */
 
 export default function Testimonials() {
   const ref = useReveal<HTMLDivElement>();
@@ -21,33 +19,16 @@ export default function Testimonials() {
             Ce qu&apos;on en dit
           </p>
           <h2 className="font-display text-4xl md:text-5xl leading-tight">
-            Les premiers avis, <span className="italic">bientôt ici.</span>
+            Ce que nos visiteurs <span className="italic">en disent.</span>
           </h2>
-          <p className="mt-5 text-ink-soft/70 leading-relaxed max-w-md">
-            On préfère attendre de vrais mots plutôt que d&apos;en inventer.
-            Cette section s&apos;ouvrira avec les avis de nos premiers
-            visiteurs.
-          </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {SLOTS.map((i) => (
-            <div
-              key={i}
-              className="reveal border border-ink/10 p-8 flex flex-col gap-6"
-              style={{ transitionDelay: `${i * 80}ms` }}
-            >
-              <p className="text-grey-300 tracking-[0.2em] text-sm" aria-hidden="true">
-                ★★★★★
-              </p>
-              <p className="font-display italic text-lg text-ink-soft/40 leading-relaxed">
-                — avis à venir —
-              </p>
-              <p className="font-utility text-[11px] uppercase tracking-[0.16em] text-grey-500">
-                Client NMW
-              </p>
-            </div>
-          ))}
+        <div className="reveal">
+          <Script src="https://elfsightcdn.com/platform.js" strategy="afterInteractive" />
+          <div
+            className="elfsight-app-c661c44c-1325-48fc-b78c-ffff61fb2005"
+            data-elfsight-app-lazy
+          />
         </div>
       </div>
     </section>
