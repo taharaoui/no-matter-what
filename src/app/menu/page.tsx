@@ -36,7 +36,7 @@ function Row({ item }: { item: MenuItem }) {
 export const metadata: Metadata = {
   title: "Menu",
   description:
-    "Café, brioches, croissants, foccacias, sandwichs et salade. La carte complète du café No Matter What, Montréal.",
+    "Café de spécialité, brioches, croissants, foccacias, sandwichs et salade — la carte complète du café No Matter What, à Sainte-Marthe-sur-le-Lac.",
 };
 
 export default function MenuPage() {

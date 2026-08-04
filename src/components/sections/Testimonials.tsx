@@ -16,7 +16,7 @@ export default function Testimonials() {
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <div className="reveal max-w-xl mb-14">
           <p className="font-utility text-[11px] uppercase tracking-[0.2em] text-grey-700 mb-4">
-            Ce qu&apos;on en dit
+            Avis Google
           </p>
           <h2 className="font-display text-4xl md:text-5xl leading-tight">
             Ce que nos visiteurs <span className="italic">en disent.</span>

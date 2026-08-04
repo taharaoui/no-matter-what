@@ -3,6 +3,9 @@ import { Playfair_Display, EB_Garamond, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { CartProvider } from "@/components/cart/CartContext";
+import CartDrawer from "@/components/cart/CartDrawer";
+import { getInitialCart } from "@/lib/shopify/cart";
 
 /* Type system is derived from the logo, not chosen alongside it.
    The mark is set in Playfair Display (wordmark) and EB Garamond
@@ -33,27 +36,32 @@ const plexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "No Matter What — Caffè · Galerie · Boutique",
+    default: "No Matter What — Café, galerie et fleurs à Sainte-Marthe-sur-le-Lac",
     template: "%s — No Matter What",
   },
   description:
-    "A Montréal café, gallery, and boutique built on three generations of one family. No Matter What.",
+    "Un café de spécialité, une galerie d'art et un bar à fleurs sous un même toit, à Sainte-Marthe-sur-le-Lac, entre Deux-Montagnes et Saint-Eustache. Trois générations, un mot d'ordre : peu importe, on ouvre.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const initialCart = await getInitialCart();
+
   return (
     <html
       lang="fr-CA"
       className={`${playfair.variable} ${garamond.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <CartProvider initialCart={initialCart}>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );

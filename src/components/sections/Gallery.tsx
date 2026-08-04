@@ -16,27 +16,27 @@ import { useReveal } from "@/lib/useReveal";
 const FRAMES = [
   {
     image: "/images/galerie-portrait-1.jpg",
-    alt: "Portrait, accrochage en cours à la galerie NMW",
+    alt: "Portrait accroché dans la galerie d'art No Matter What",
     position: "object-[35%_30%]",
   },
   {
     image: "/images/galerie-portrait-2.jpg",
-    alt: "Portrait, accrochage en cours à la galerie NMW",
+    alt: "Second portrait de l'accrochage en cours à la galerie NMW",
     position: "object-[35%_30%]",
   },
   {
     image: "/images/galerie-fleur-bois.jpg",
-    alt: "Peinture sur bois, accrochage en cours à la galerie NMW",
+    alt: "Peinture florale sur bois, galerie NMW",
     position: "object-center",
   },
   {
     image: "/images/SILENCE.jpg",
-    alt: "Peinture, accrochage en cours à la galerie NMW",
+    alt: "Œuvre intitulée Silence, exposée à la galerie NMW",
     position: "object-center",
   },
   {
     image: "/images/eveil-chromatique.jpg",
-    alt: "Peinture, accrochage en cours à la galerie NMW",
+    alt: "Œuvre Éveil chromatique, exposée à la galerie NMW",
     position: "object-center",
   },
 ] as const;
@@ -66,8 +66,9 @@ export default function Gallery() {
               L&apos;art a sa place, <span className="italic">au même titre que le café.</span>
             </h2>
             <p className="mt-5 text-paper-light/70 leading-relaxed">
-              Une rotation d&apos;artistes montréalais, exposée entre les tables.
-              La galerie change ; l&apos;attention portée à chaque pièce, non.
+              Une galerie d&apos;art indépendante, en rotation, exposée entre
+              les tables. L&apos;accrochage change ; l&apos;attention portée
+              à chaque pièce, non.
             </p>
           </div>
 

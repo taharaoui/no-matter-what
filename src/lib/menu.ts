@@ -149,7 +149,7 @@ export const MENU: MenuSection[] = [
   {
     id: "crosti-croissants",
     title: "Crosti'Croissants",
-    intro: "Nos grilled cheese dans un croissant.",
+    intro: "Le croissant, doré et grillé, refermé sur un cœur de fromage fondant.",
     items: [
       { name: "Salami & provolone" },
       { name: "Brie, pêches grillées & miel" },

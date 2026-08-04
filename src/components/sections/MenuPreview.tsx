@@ -8,9 +8,9 @@ import { useReveal } from "@/lib/useReveal";
    carte at /menu stays text-only on purpose (a printed bill of fare); here,
    the job is appetite, not reference. Three real, new items carry it. */
 const SIGNATURE = [
-  { name: "Porchetta", desc: "Le nouveau sandwich chez NMW", image: "/images/menu-porchetta.jpg", href: "/menu#sandwichs" },
-  { name: "Crosti'Croissant", desc: "Grilled cheese dans un croissant", image: "/images/menu-crosti-croissants.jpg", href: "/menu#crosti-croissants" },
-  { name: "Cappuccino glacé", desc: "Mousse froide, servi sur glace", image: "/images/menu-cappuccino-glace.jpg", href: "/menu#cafes-glaces" },
+  { name: "Porchetta", desc: "Porc effiloché, mijoté aux herbes, croûte dorée — notre dernière arrivée en carte.", image: "/images/menu-porchetta.jpg", href: "/menu#sandwichs" },
+  { name: "Crosti'Croissant", desc: "Un croissant doré garni de fromage fondant, grillé à la minute.", image: "/images/menu-crosti-croissants.jpg", href: "/menu#crosti-croissants" },
+  { name: "Cappuccino glacé", desc: "Espresso sur glace, coiffé d'une mousse de lait froide.", image: "/images/menu-cappuccino-glace.jpg", href: "/menu#cafes-glaces" },
 ];
 
 export default function MenuPreview() {
@@ -47,7 +47,7 @@ export default function MenuPreview() {
               <div className="relative aspect-[4/5] overflow-hidden grain border border-ink/10">
                 <Image
                   src={item.image}
-                  alt={item.name}
+                  alt={`${item.name}, servi au café No Matter What`}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                 />

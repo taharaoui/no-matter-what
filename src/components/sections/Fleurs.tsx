@@ -19,15 +19,15 @@ export default function Fleurs() {
               Des roses <span className="italic">qui ne meurent pas.</span>
             </h2>
             <p className="text-ink-soft/85 leading-relaxed max-w-md">
-              Roses éternelles sous cloche de verre, bouquets frais préparés
-              sur place. La fleuristerie a sa propre logique, à part du reste
+              Roses éternelles sous cloche de verre, bouquets frais composés
+              sur place. Le bar à fleurs a sa propre logique, à part du reste
               de la boutique — un rayon, pas une ligne de texte.
             </p>
             <Link
               href="/fleurs"
               className="mt-8 inline-flex items-center border border-ink px-6 py-3 font-utility text-[11px] uppercase tracking-[0.16em] hover:bg-ink hover:text-paper-light transition-colors w-fit"
             >
-              Voir les fleurs
+              Découvrir le bar à fleurs
             </Link>
           </div>
 
@@ -35,7 +35,7 @@ export default function Fleurs() {
             <div className="reveal aspect-[3/4] relative overflow-hidden grain border border-ink/10">
               <Image
                 src="/images/fleurs-rose-eternelle.jpg"
-                alt="Rose éternelle sous cloche de verre, NMW"
+                alt="Rose éternelle sous cloche de verre, bar à fleurs NMW"
                 fill
                 className="object-cover"
               />
@@ -46,7 +46,7 @@ export default function Fleurs() {
             >
               <Image
                 src="/images/fleurs-bouquet-mixte.jpg"
-                alt="Bouquet de fleurs fraîches, NMW"
+                alt="Bouquet de fleurs fraîches composé au bar à fleurs NMW"
                 fill
                 className="object-cover"
               />
@@ -63,7 +63,7 @@ export default function Fleurs() {
           <div className="reveal aspect-[4/3] relative overflow-hidden grain border border-ink/10">
             <Image
               src="/images/fleurs-precommande-roses.jpg"
-              alt="Bouquets de roses sur précommande, NMW"
+              alt="Bouquets de roses sur précommande au bar à fleurs NMW"
               fill
               className="object-cover"
             />
@@ -77,8 +77,9 @@ export default function Fleurs() {
             </h2>
             <p className="text-ink-soft/85 leading-relaxed max-w-md mb-8">
               Bouquet de 3 roses avec petites fleurs blanches et verdure —
-              26,95&nbsp;$. Bouquet de 6 roses — 41,95&nbsp;$. Préparés avec
-              soin chez NMW ; la fenêtre de précommande change chaque semaine.
+              26,95&nbsp;$. Bouquet de 6 roses — 41,95&nbsp;$. Composés à la
+              main chez NMW ; la fenêtre de précommande change chaque
+              semaine.
             </p>
             <Link
               href="/#visite"

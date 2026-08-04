@@ -9,7 +9,7 @@ import { CHAPTERS, PROLOGUE } from "@/lib/story";
 export const metadata: Metadata = {
   title: "Notre histoire",
   description:
-    "Trois générations, une même adresse à Montréal — et la semaine de verglas qui a donné son nom à l'endroit.",
+    "Trois générations, une même adresse à Sainte-Marthe-sur-le-Lac — et l'histoire derrière le nom No Matter What.",
 };
 
 /* Width of the year column, and therefore where the thread and its nodes

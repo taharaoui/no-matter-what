@@ -12,7 +12,7 @@ export default function Hero() {
           for the header, where it appears the moment you scroll. */}
       <Image
         src="/images/bar-cafe.jpg"
-        alt="La salle NMW — comptoir, piano et galerie"
+        alt="Comptoir, piano et accrochage dans la salle du café No Matter What, à Sainte-Marthe-sur-le-Lac"
         fill
         priority
         className="object-cover object-[45%_35%]"
@@ -44,9 +44,9 @@ export default function Hero() {
 
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 border-t border-paper-light/20 pt-8">
           <p className="max-w-md text-paper-light/75 leading-relaxed">
-            Un grand-père qui a commencé avec un comptoir et une théière. Trois
-            générations plus tard, un même mot d&apos;ordre : peu importe.
-            On continue.
+            Un grand-père qui a commencé avec un comptoir et une théière.
+            Trois générations plus tard : un café, une galerie, un bar à
+            fleurs — un même mot d&apos;ordre. Peu importe. On continue.
           </p>
 
           <Link

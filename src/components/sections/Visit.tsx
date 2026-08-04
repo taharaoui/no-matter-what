@@ -13,7 +13,7 @@ export default function Visit() {
     <section id="visite" ref={ref} className="relative bg-ink text-paper-light py-28 md:py-36 grain overflow-hidden">
       <Image
         src="/images/bar-cafe.jpg"
-        alt="L'intérieur du café NMW — comptoir, galerie et salle"
+        alt="L'intérieur du café No Matter What à Sainte-Marthe-sur-le-Lac — comptoir, galerie et salle"
         fill
         className="object-cover object-[50%_35%]"
       />
@@ -29,6 +29,10 @@ export default function Visit() {
             <br />
             <span className="italic">une même porte.</span>
           </h2>
+          <p className="mt-6 max-w-sm text-paper-light/70 leading-relaxed">
+            À Sainte-Marthe-sur-le-Lac, à deux pas de Deux-Montagnes et de
+            Saint-Eustache, à une demi-heure de Laval et de Montréal.
+          </p>
         </div>
 
         <div className="reveal grid grid-cols-2 gap-x-8 gap-y-6 font-utility text-sm">

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "@/components/brand/Logo";
+import { useCart } from "@/components/cart/CartContext";
 
 const LINKS = [
   { href: "/histoire", label: "Notre Histoire" },
@@ -16,6 +17,7 @@ export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { totalQuantity, openCart } = useCart();
 
   /* Only the homepage opens on a full-bleed ink hero, so only there does
      the header start transparent. Interior pages open on paper and get a
@@ -92,28 +94,52 @@ export default function Header() {
           })}
         </nav>
 
-        <Link
-          href="/menu"
-          className={`hidden md:inline-flex items-center border px-5 py-2 font-utility text-[11px] uppercase tracking-[0.16em] transition-colors ${
-            solid
-              ? "border-ink text-ink hover:bg-ink hover:text-paper-light"
-              : "border-paper-light/70 text-paper-light hover:bg-paper-light hover:text-ink"
-          }`}
-        >
-          Menu
-        </Link>
+        <div className="hidden md:flex items-center gap-5">
+          <button
+            type="button"
+            onClick={openCart}
+            className={`font-utility text-[11px] uppercase tracking-[0.16em] transition-colors ${
+              solid ? "text-grey-700 hover:text-ink" : "text-paper-light/85 hover:text-paper-light"
+            }`}
+          >
+            Panier{totalQuantity > 0 && ` (${totalQuantity})`}
+          </button>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-controls="nav-mobile"
-          className={`md:hidden font-utility text-[11px] uppercase tracking-[0.16em] transition-colors ${
-            solid ? "text-ink" : "text-paper-light"
-          }`}
-        >
-          {open ? "Fermer" : "Menu"}
-        </button>
+          <Link
+            href="/menu"
+            className={`inline-flex items-center border px-5 py-2 font-utility text-[11px] uppercase tracking-[0.16em] transition-colors ${
+              solid
+                ? "border-ink text-ink hover:bg-ink hover:text-paper-light"
+                : "border-paper-light/70 text-paper-light hover:bg-paper-light hover:text-ink"
+            }`}
+          >
+            Menu
+          </Link>
+        </div>
+
+        <div className="flex items-center gap-5 md:hidden">
+          <button
+            type="button"
+            onClick={openCart}
+            className={`font-utility text-[11px] uppercase tracking-[0.16em] transition-colors ${
+              solid ? "text-ink" : "text-paper-light"
+            }`}
+          >
+            Panier{totalQuantity > 0 && ` (${totalQuantity})`}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="nav-mobile"
+            className={`font-utility text-[11px] uppercase tracking-[0.16em] transition-colors ${
+              solid ? "text-ink" : "text-paper-light"
+            }`}
+          >
+            {open ? "Fermer" : "Menu"}
+          </button>
+        </div>
       </div>
 
       {/* Mobile navigation. One panel, one transition — the links are set

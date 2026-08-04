@@ -23,15 +23,16 @@ export default function Boutique() {
             Des objets qu&apos;on garde, <span className="italic">pas qu&apos;on jette.</span>
           </h2>
           <p className="text-ink-soft/85 leading-relaxed max-w-md">
-            Céramique, cafetières, objets choisis pour durer — et bientôt, la
-            première collection d&apos;articles NMW. Chaque pièce répond à la
-            même logique qui guide le café depuis le début.
+            Céramique, cafetières, produits d&apos;artisans québécois — et
+            bientôt, la première collection d&apos;articles NMW. Chaque pièce
+            répond à la même logique qui guide le café depuis le début :
+            durer, plutôt que plaire une saison.
           </p>
           <Link
             href="/boutique"
             className="mt-8 inline-flex items-center border border-ink px-6 py-3 font-utility text-[11px] uppercase tracking-[0.16em] hover:bg-ink hover:text-paper-light transition-colors w-fit"
           >
-            Visiter la boutique
+            Explorer la boutique
           </Link>
         </div>
 
@@ -39,7 +40,7 @@ export default function Boutique() {
           <div className="reveal aspect-[3/4] relative overflow-hidden grain border border-ink/10">
             <Image
               src="/images/sculpture-1.jpg"
-              alt="Céramique sculptée, boutique NMW"
+              alt="Céramique sculptée, boutique-cadeaux No Matter What"
               fill
               className="object-cover"
             />
@@ -52,7 +53,7 @@ export default function Boutique() {
                 real NMW shelf/merch shot when it's taken. */}
             <Image
               src="/images/boutique-2.jpg"
-              alt="Articles boutique"
+              alt="Objets et articles cadeaux en vente à la boutique NMW"
               fill
               className="object-cover"
             />
