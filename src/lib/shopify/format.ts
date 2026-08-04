@@ -9,3 +9,10 @@ export function formatMoney(money: Money): string {
     currency: money.currencyCode,
   }).format(Number(money.amount));
 }
+
+/** Card-length excerpt — cuts on a word boundary rather than mid-word. */
+export function truncate(text: string, maxLength: number): string {
+  if (text.length <= maxLength) return text;
+  const cut = text.slice(0, maxLength);
+  return `${cut.slice(0, cut.lastIndexOf(" "))}…`;
+}

@@ -21,7 +21,15 @@ import {
 } from "./reshape";
 import type { Cart, CartLineInput, Product, ProductListItem } from "./types";
 
-export type { Cart, CartLine, CartLineInput, Product, ProductListItem, Money } from "./types";
+export type {
+  Cart,
+  CartLine,
+  CartLineInput,
+  Product,
+  ProductListItem,
+  ProductImage,
+  Money,
+} from "./types";
 export { ShopifyApiError };
 
 type UserError = { field: string[] | null; message: string };
@@ -55,7 +63,9 @@ export async function getProduct(handle: string): Promise<Product | null> {
    catches these and turns them into a UI-facing { error } result. */
 
 export async function getCart(cartId: string): Promise<Cart | null> {
-  const data = await shopifyFetch<{ cart: RawCart | null }>(CART_QUERY, { cartId });
+  const data = await shopifyFetch<{ cart: RawCart | null }>(CART_QUERY, { cartId }, {
+    cache: "no-store",
+  });
   return data.cart ? reshapeCart(data.cart) : null;
 }
 
@@ -68,7 +78,7 @@ function assertNoUserErrors(userErrors: UserError[], action: string) {
 export async function createCart(lines?: CartLineInput[]): Promise<Cart> {
   const data = await shopifyFetch<{
     cartCreate: { cart: RawCart | null; userErrors: UserError[] };
-  }>(CART_CREATE_MUTATION, { lines });
+  }>(CART_CREATE_MUTATION, { lines }, { cache: "no-store" });
   assertNoUserErrors(data.cartCreate.userErrors, "cartCreate");
   if (!data.cartCreate.cart) throw new ShopifyApiError("cartCreate returned no cart");
   return reshapeCart(data.cartCreate.cart);
@@ -77,7 +87,7 @@ export async function createCart(lines?: CartLineInput[]): Promise<Cart> {
 export async function addCartLines(cartId: string, lines: CartLineInput[]): Promise<Cart> {
   const data = await shopifyFetch<{
     cartLinesAdd: { cart: RawCart | null; userErrors: UserError[] };
-  }>(CART_LINES_ADD_MUTATION, { cartId, lines });
+  }>(CART_LINES_ADD_MUTATION, { cartId, lines }, { cache: "no-store" });
   assertNoUserErrors(data.cartLinesAdd.userErrors, "cartLinesAdd");
   if (!data.cartLinesAdd.cart) throw new ShopifyApiError("cartLinesAdd returned no cart");
   return reshapeCart(data.cartLinesAdd.cart);
@@ -86,7 +96,7 @@ export async function addCartLines(cartId: string, lines: CartLineInput[]): Prom
 export async function removeCartLines(cartId: string, lineIds: string[]): Promise<Cart> {
   const data = await shopifyFetch<{
     cartLinesRemove: { cart: RawCart | null; userErrors: UserError[] };
-  }>(CART_LINES_REMOVE_MUTATION, { cartId, lineIds });
+  }>(CART_LINES_REMOVE_MUTATION, { cartId, lineIds }, { cache: "no-store" });
   assertNoUserErrors(data.cartLinesRemove.userErrors, "cartLinesRemove");
   if (!data.cartLinesRemove.cart) throw new ShopifyApiError("cartLinesRemove returned no cart");
   return reshapeCart(data.cartLinesRemove.cart);
@@ -98,7 +108,7 @@ export async function updateCartLines(
 ): Promise<Cart> {
   const data = await shopifyFetch<{
     cartLinesUpdate: { cart: RawCart | null; userErrors: UserError[] };
-  }>(CART_LINES_UPDATE_MUTATION, { cartId, lines });
+  }>(CART_LINES_UPDATE_MUTATION, { cartId, lines }, { cache: "no-store" });
   assertNoUserErrors(data.cartLinesUpdate.userErrors, "cartLinesUpdate");
   if (!data.cartLinesUpdate.cart) throw new ShopifyApiError("cartLinesUpdate returned no cart");
   return reshapeCart(data.cartLinesUpdate.cart);

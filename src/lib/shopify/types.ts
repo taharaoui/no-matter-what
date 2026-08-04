@@ -27,19 +27,28 @@ export type ProductVariant = {
   availableForSale: boolean;
   selectedOptions: SelectedOption[];
   price: Money;
+  compareAtPrice: Money | null;
 };
 
-/** Shape for the /boutique grid — no variants, no description. */
+/** Shape for the /boutique grid — trimmed detail, plus a second image for the hover swap. */
 export type ProductListItem = {
+  id: string;
   handle: string;
   title: string;
+  description: string;
   availableForSale: boolean;
   featuredImage: ProductImage | null;
+  secondaryImage: ProductImage | null;
   priceRange: { min: Money };
+  compareAtPrice: Money | null;
+  tags: string[];
+  productType: string;
+  vendor: string;
 };
 
 /** Shape for the /boutique/[handle] page — full detail. */
 export type Product = {
+  id: string;
   handle: string;
   title: string;
   description: string;
@@ -49,6 +58,11 @@ export type Product = {
   options: ProductOption[];
   variants: ProductVariant[];
   priceRange: { min: Money };
+  compareAtPrice: Money | null;
+  tags: string[];
+  productType: string;
+  vendor: string;
+  seo: { title: string | null; description: string | null };
 };
 
 export type CartLine = {

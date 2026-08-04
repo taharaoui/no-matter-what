@@ -21,11 +21,18 @@ type RawMoney = { amount: string; currencyCode: string };
 type RawSelectedOption = { name: string; value: string };
 
 type RawProductListNode = {
+  id: string;
   handle: string;
   title: string;
+  description: string;
   availableForSale: boolean;
+  tags: string[];
+  productType: string;
+  vendor: string;
   featuredImage: RawImage | null;
+  images: Connection<RawImage>;
   priceRange: { minVariantPrice: RawMoney };
+  compareAtPriceRange: { minVariantPrice: RawMoney };
 };
 
 export type RawProductsData = { products: Connection<RawProductListNode> };
@@ -36,18 +43,25 @@ type RawVariantNode = {
   availableForSale: boolean;
   selectedOptions: RawSelectedOption[];
   price: RawMoney;
+  compareAtPrice: RawMoney | null;
 };
 
 type RawProductDetailNode = {
+  id: string;
   handle: string;
   title: string;
   description: string;
   descriptionHtml: string;
   availableForSale: boolean;
+  tags: string[];
+  productType: string;
+  vendor: string;
+  seo: { title: string | null; description: string | null };
   images: Connection<RawImage>;
   options: { id: string; name: string; values: string[] }[];
   variants: Connection<RawVariantNode>;
   priceRange: { minVariantPrice: RawMoney };
+  compareAtPriceRange: { minVariantPrice: RawMoney };
 };
 
 export type RawProductByHandleData = { product: RawProductDetailNode | null };
@@ -92,13 +106,31 @@ function reshapeSelectedOption(raw: RawSelectedOption): SelectedOption {
   return { name: raw.name, value: raw.value };
 }
 
+/* Shopify's compareAtPriceRange returns "0" (not null) when no compare-at
+   price is set on any variant — treating anything <= the real price as
+   "no sale" avoids a nonsensical $0.00 struck through on the card. */
+function reshapeCompareAtPrice(price: RawMoney, compareAt: RawMoney): Money | null {
+  return Number(compareAt.amount) > Number(price.amount) ? reshapeMoney(compareAt) : null;
+}
+
 export function reshapeProductListItem(raw: RawProductListNode): ProductListItem {
+  const images = edgesToNodes(raw.images);
   return {
+    id: raw.id,
     handle: raw.handle,
     title: raw.title,
+    description: raw.description,
     availableForSale: raw.availableForSale,
     featuredImage: raw.featuredImage ? reshapeImage(raw.featuredImage) : null,
+    secondaryImage: images[1] ? reshapeImage(images[1]) : null,
     priceRange: { min: reshapeMoney(raw.priceRange.minVariantPrice) },
+    compareAtPrice: reshapeCompareAtPrice(
+      raw.priceRange.minVariantPrice,
+      raw.compareAtPriceRange.minVariantPrice
+    ),
+    tags: raw.tags,
+    productType: raw.productType,
+    vendor: raw.vendor,
   };
 }
 
@@ -109,6 +141,7 @@ export function reshapeProduct(raw: RawProductDetailNode): Product {
     availableForSale: v.availableForSale,
     selectedOptions: v.selectedOptions.map(reshapeSelectedOption),
     price: reshapeMoney(v.price),
+    compareAtPrice: v.compareAtPrice ? reshapeCompareAtPrice(v.price, v.compareAtPrice) : null,
   }));
 
   const options: ProductOption[] = raw.options.map((o) => ({
@@ -118,6 +151,7 @@ export function reshapeProduct(raw: RawProductDetailNode): Product {
   }));
 
   return {
+    id: raw.id,
     handle: raw.handle,
     title: raw.title,
     description: raw.description,
@@ -127,6 +161,14 @@ export function reshapeProduct(raw: RawProductDetailNode): Product {
     options,
     variants,
     priceRange: { min: reshapeMoney(raw.priceRange.minVariantPrice) },
+    compareAtPrice: reshapeCompareAtPrice(
+      raw.priceRange.minVariantPrice,
+      raw.compareAtPriceRange.minVariantPrice
+    ),
+    tags: raw.tags,
+    productType: raw.productType,
+    vendor: raw.vendor,
+    seo: { title: raw.seo?.title ?? null, description: raw.seo?.description ?? null },
   };
 }
 

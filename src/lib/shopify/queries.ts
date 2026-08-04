@@ -58,16 +58,37 @@ export const PRODUCTS_QUERY = /* GraphQL */ `
     products(first: $first, sortKey: TITLE) {
       edges {
         node {
+          id
           handle
           title
+          description
           availableForSale
+          tags
+          productType
+          vendor
           featuredImage {
             url
             altText
             width
             height
           }
+          images(first: 2) {
+            edges {
+              node {
+                url
+                altText
+                width
+                height
+              }
+            }
+          }
           priceRange {
+            minVariantPrice {
+              amount
+              currencyCode
+            }
+          }
+          compareAtPriceRange {
             minVariantPrice {
               amount
               currencyCode
@@ -82,11 +103,19 @@ export const PRODUCTS_QUERY = /* GraphQL */ `
 export const PRODUCT_BY_HANDLE_QUERY = /* GraphQL */ `
   query ProductByHandle($handle: String!) {
     product(handle: $handle) {
+      id
       handle
       title
       description
       descriptionHtml
       availableForSale
+      tags
+      productType
+      vendor
+      seo {
+        title
+        description
+      }
       images(first: 10) {
         edges {
           node {
@@ -116,10 +145,20 @@ export const PRODUCT_BY_HANDLE_QUERY = /* GraphQL */ `
               amount
               currencyCode
             }
+            compareAtPrice {
+              amount
+              currencyCode
+            }
           }
         }
       }
       priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      compareAtPriceRange {
         minVariantPrice {
           amount
           currencyCode

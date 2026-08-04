@@ -16,10 +16,19 @@ type GraphQLResponse<TData> = {
   errors?: { message: string }[];
 };
 
+type FetchOpts =
+  /* Time-based revalidation (ISR) — the default for catalog reads. Tags let
+     a future webhook call revalidateTag("products") for instant updates
+     instead of waiting out the window. */
+  | { cache?: never; revalidate: number | false; tags?: string[] }
+  /* Always-fresh — required for cart reads/writes, which are per-session
+     and must never be served from the shared Data Cache. */
+  | { cache: "no-store"; revalidate?: never; tags?: never };
+
 export async function shopifyFetch<TData>(
   query: string,
   variables?: Record<string, unknown>,
-  opts?: { cache?: RequestCache }
+  opts: FetchOpts = { revalidate: 60, tags: ["products"] }
 ): Promise<TData> {
   const res = await fetch(endpoint(), {
     method: "POST",
@@ -29,7 +38,9 @@ export async function shopifyFetch<TData>(
         process.env.NMW_SHOP_SHOPIFY_STOREFRONT_ACCESS_TOKEN ?? "",
     },
     body: JSON.stringify({ query, variables }),
-    cache: opts?.cache ?? "no-store",
+    ...(opts.cache === "no-store"
+      ? { cache: "no-store" as const }
+      : { next: { revalidate: opts.revalidate, tags: opts.tags } }),
   });
 
   if (!res.ok) {
