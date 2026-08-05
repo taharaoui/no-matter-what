@@ -1,10 +1,23 @@
 const API_VERSION = "2024-10";
 
 /** Domain env var is occasionally written with a scheme/trailing slash by
- *  Vercel's Shopify auto-sync — stripped defensively rather than assumed. */
+ *  Vercel's Shopify auto-sync — stripped defensively rather than assumed.
+ *
+ *  Vercel's auto-sync has also changed which *name* it writes under between
+ *  store connections: SHOPIFY_STORE_DOMAIN is what it provisions today,
+ *  NMW_SHOP_SHOPIFY_STORE_DOMAIN was the name under an earlier connection
+ *  (and is why the storefront went silently empty after reconnecting to a
+ *  new store — the code was still reading the old name, which no longer
+ *  existed). Both are checked, newest first, so a future re-sync back to
+ *  the old naming doesn't break this again. */
 function endpoint(): string {
-  const raw = process.env.NMW_SHOP_SHOPIFY_STORE_DOMAIN;
-  if (!raw) throw new ShopifyApiError("NMW_SHOP_SHOPIFY_STORE_DOMAIN is not set");
+  const raw =
+    process.env.SHOPIFY_STORE_DOMAIN ?? process.env.NMW_SHOP_SHOPIFY_STORE_DOMAIN;
+  if (!raw) {
+    throw new ShopifyApiError(
+      "SHOPIFY_STORE_DOMAIN (or NMW_SHOP_SHOPIFY_STORE_DOMAIN) is not set"
+    );
+  }
   const domain = raw.replace(/^https?:\/\//, "").replace(/\/$/, "");
   return `https://${domain}/api/${API_VERSION}/graphql.json`;
 }
@@ -35,7 +48,9 @@ export async function shopifyFetch<TData>(
     headers: {
       "Content-Type": "application/json",
       "X-Shopify-Storefront-Access-Token":
-        process.env.NMW_SHOP_SHOPIFY_STOREFRONT_ACCESS_TOKEN ?? "",
+        process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN ??
+        process.env.NMW_SHOP_SHOPIFY_STOREFRONT_ACCESS_TOKEN ??
+        "",
     },
     body: JSON.stringify({ query, variables }),
     ...(opts.cache === "no-store"
