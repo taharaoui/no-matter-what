@@ -97,6 +97,38 @@ export const PIECES: Piece[] = [
     tone: "grey900",
     format: "portrait",
   },
+  {
+    slug: "erosion",
+    title: "Érosion",
+    artist: "julie-lalonde",
+    medium: "Acrylique",
+    dimensions: "30 × 40 po",
+    price: "Disponible — prix au comptoir",
+    label:
+      "Cette œuvre intitulée Érosion explore la fragilité du corps et de l'âme. Le corps féminin, à moitié effacé par des coulures sombres, devient le symbole d'une identité en transformation, marquée par le temps, la douleur et le silence. Entre disparition et résilience, ce tableau cherche à faire ressentir un effacement lent, mais profondément humain.",
+    image: {
+      src: "/images/erosion.png",
+      alt: "Érosion, œuvre de Julie Lalonde, acrylique, exposée au café No Matter What",
+    },
+    tone: "grey700",
+    format: "portrait",
+  },
+  {
+    slug: "ce-que-nous-sommes",
+    title: "Ce que nous sommes",
+    artist: "julie-lalonde",
+    medium: "Acrylique",
+    dimensions: "30 × 40 po",
+    price: "Disponible — prix au comptoir",
+    label:
+      "Une silhouette féminine sans visage, car elle est nous, toutes ces femmes. Cette œuvre explore la sensualité, la mémoire du corps et la puissance silencieuse de la féminité. Elle invite à ressentir, plus qu'à comprendre — à se reconnaître dans ce que nous sommes, au-delà des formes.",
+    image: {
+      src: "/images/ce-que-nous-sommes.jpg",
+      alt: "Ce que nous sommes, œuvre de Julie Lalonde, acrylique, exposée au café No Matter What",
+    },
+    tone: "grey500",
+    format: "portrait",
+  },
 ];
 
 export const PIECE_BY_SLUG = Object.fromEntries(

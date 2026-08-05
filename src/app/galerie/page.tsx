@@ -5,7 +5,7 @@ import PageIntro from "@/components/layout/PageIntro";
 import Plate from "@/components/ui/Plate";
 import WallLabel from "@/components/ui/WallLabel";
 import GalerieContactForm from "@/components/gallery/GalerieContactForm";
-import { PIECES, ARTISTS, GALERIE_INTRO, ARTIST_BY_SLUG } from "@/lib/gallery";
+import { PIECES, ARTISTS, GALERIE_INTRO } from "@/lib/gallery";
 
 const ADDRESS_QUERY = "3054A Chemin d'Oka, Sainte-Marthe-sur-le-Lac, QC J0N 1P0";
 const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS_QUERY)}`;
