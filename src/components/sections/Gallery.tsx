@@ -4,43 +4,18 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useReveal } from "@/lib/useReveal";
+import { PIECES, ARTIST_BY_SLUG } from "@/lib/gallery";
 
-/* One frame still stands in for real artwork photography (the accrochage
-   catalogued in /lib/gallery.ts isn't shot yet). The rest are real pieces,
-   in place as they get photographed.
+/* Sourced straight from the real catalogue (lib/gallery.ts) rather than a
+   separate hardcoded list — a card that links to a piece and previews its
+   wall label has to be backed by a real piece, so this can't drift from
+   what /galerie actually has. (This replaced an earlier version mixing in
+   uncatalogued/placeholder photos with invented captions.)
 
    Model: a horizontal filmstrip rather than a fixed bento grid — walking
    past a gallery wall, one frame at a time. Every frame shares the same
    aspect ratio, so new pieces just append to the array instead of forcing
    a grid reshuffle to fit an odd count. */
-const FRAMES = [
-  {
-    image: "/images/galerie-portrait-1.jpg",
-    alt: "Portrait accroché dans la galerie d'art No Matter What",
-    position: "object-[35%_30%]",
-  },
-  {
-    image: "/images/galerie-portrait-2.jpg",
-    alt: "Second portrait de l'accrochage en cours à la galerie NMW",
-    position: "object-[35%_30%]",
-  },
-  {
-    image: "/images/galerie-fleur-bois.jpg",
-    alt: "Peinture florale sur bois, galerie NMW",
-    position: "object-center",
-  },
-  {
-    image: "/images/SILENCE.jpg",
-    alt: "Œuvre intitulée Silence, exposée à la galerie NMW",
-    position: "object-center",
-  },
-  {
-    image: "/images/eveil-chromatique.jpg",
-    alt: "Œuvre Éveil chromatique, exposée à la galerie NMW",
-    position: "object-center",
-  },
-] as const;
-
 export default function Gallery() {
   const ref = useReveal<HTMLDivElement>();
   const trackRef = useRef<HTMLDivElement>(null);
@@ -108,20 +83,42 @@ export default function Gallery() {
         ref={trackRef}
         className="reveal no-scrollbar flex gap-4 md:gap-5 overflow-x-auto snap-x snap-mandatory px-6 md:px-10 pb-2"
       >
-        {FRAMES.map((frame) => (
-          <div
-            key={frame.image}
-            className="relative shrink-0 snap-start w-[72vw] sm:w-[42vw] md:w-[28vw] lg:w-[22vw] aspect-[4/5] overflow-hidden grain"
-          >
-            <Image
-              src={frame.image}
-              alt={frame.alt}
-              fill
-              sizes="(min-width: 1024px) 22vw, (min-width: 768px) 28vw, (min-width: 640px) 42vw, 72vw"
-              className={`object-cover ${frame.position}`}
-            />
-          </div>
-        ))}
+        {PIECES.map((piece) => {
+          const artist = ARTIST_BY_SLUG[piece.artist];
+          return (
+            <Link
+              key={piece.slug}
+              href={`/galerie/${piece.slug}`}
+              className="group relative shrink-0 snap-start w-[72vw] sm:w-[42vw] md:w-[28vw] lg:w-[22vw] aspect-[4/5] overflow-hidden grain"
+            >
+              {piece.image && (
+                <Image
+                  src={piece.image.src}
+                  alt={piece.image.alt}
+                  fill
+                  sizes="(min-width: 1024px) 22vw, (min-width: 768px) 28vw, (min-width: 640px) 42vw, 72vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              )}
+
+              {/* Preview: the wall label's short form, revealed on hover
+                  rather than printed under the frame — the filmstrip stays
+                  a wall of images at rest, and identifies a piece only once
+                  you're looking at it. */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-ink/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute bottom-4 left-4 right-4 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                {artist && (
+                  <p className="font-utility text-[10px] uppercase tracking-[0.14em] text-grey-300">
+                    {artist.name}
+                  </p>
+                )}
+                <p className="font-display text-xl text-paper-light leading-snug mt-1">
+                  {piece.title}
+                </p>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </section>
   );
