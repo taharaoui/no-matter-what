@@ -165,6 +165,15 @@ export default function GaleriePage() {
 
           <div className="md:grid md:grid-cols-[16rem_1fr] md:gap-16">
             <div className="mb-8 md:mb-0">
+              <div className="aspect-square relative overflow-hidden grain border border-ink/10 mb-6 max-w-[16rem]">
+                <Image
+                  src="/images/julie-lalonde.jpg"
+                  alt="Julie Lalonde dans son atelier"
+                  fill
+                  sizes="(min-width: 768px) 16rem, 60vw"
+                  className="object-cover object-[58%_45%]"
+                />
+              </div>
               <p className="font-display text-2xl md:text-3xl">{artist.name}</p>
               <p className="font-utility text-[11px] uppercase tracking-[0.12em] text-ink-soft/55 mt-2 leading-relaxed">
                 {artist.based}
