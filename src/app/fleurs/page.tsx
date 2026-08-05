@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PageIntro from "@/components/layout/PageIntro";
 import Logo from "@/components/brand/Logo";
+import PrecommandeModal from "@/components/fleurs/PrecommandeModal";
 
 const ADDRESS_QUERY = "3054A Chemin d'Oka, Sainte-Marthe-sur-le-Lac, QC J0N 1P0";
 const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS_QUERY)}`;
@@ -135,12 +136,7 @@ export default function FleursPage() {
                 change chaque semaine.
               </p>
 
-              <Link
-                href="/#visite"
-                className="mt-8 inline-flex items-center border border-ink px-6 py-3 font-utility text-[11px] uppercase tracking-[0.16em] hover:bg-ink hover:text-paper-light transition-colors w-fit"
-              >
-                Précommander un bouquet
-              </Link>
+              <PrecommandeModal />
             </div>
 
             <div className="order-1 md:order-2 aspect-[4/5] relative overflow-hidden grain border border-ink/10">
