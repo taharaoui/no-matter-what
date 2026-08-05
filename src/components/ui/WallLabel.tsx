@@ -45,7 +45,9 @@ export default function WallLabel({
         }`}
       >
         {piece.title}
-        <span className={`not-italic font-normal ${meta}`}>, {piece.year}</span>
+        {piece.year && (
+          <span className={`not-italic font-normal ${meta}`}>, {piece.year}</span>
+        )}
       </h3>
 
       <p className={`font-utility text-[11px] tracking-[0.06em] mt-3 ${meta}`}>
