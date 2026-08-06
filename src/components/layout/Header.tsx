@@ -7,7 +7,7 @@ import Logo from "@/components/brand/Logo";
 import { useCart } from "@/components/cart/CartContext";
 
 const LINKS = [
-  { href: "/histoire", label: "Notre Histoire" },
+  { href: "/a-propos", label: "À propos" },
   { href: "/galerie", label: "Galerie" },
   { href: "/boutique", label: "Boutique" },
   { href: "/fleurs", label: "Fleurs" },

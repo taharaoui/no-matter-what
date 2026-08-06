@@ -17,15 +17,15 @@ export default function Manifesto() {
           &ldquo;Peu importe. On ouvre.&rdquo;
         </p>
         <p className="reveal mt-8 text-paper-light/65 leading-relaxed">
-          Janvier 1998. La ville est sans électricité depuis cinq jours. Le
-          café aussi — et il ouvre quand même, un réchaud sur le trottoir.
-          Vingt ans plus tard, c&apos;est devenu un nom.
+          C&apos;est la phrase qui a porté Julie Lalonde à travers le deuil,
+          le doute, les recommencements — celle qu&apos;elle a choisie pour
+          ouvrir un café à Sainte-Marthe-sur-le-Lac.
         </p>
         <Link
-          href="/histoire#nom"
+          href="/a-propos"
           className="reveal mt-8 inline-block font-utility text-[11px] uppercase tracking-[0.16em] border-b border-paper-light/40 pb-1"
         >
-          Pourquoi ce nom
+          Son histoire
         </Link>
       </div>
     </section>

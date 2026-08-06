@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     template: "%s — No Matter What",
   },
   description:
-    "Un café de spécialité, une galerie d'art et un bar à fleurs sous un même toit, à Sainte-Marthe-sur-le-Lac, entre Deux-Montagnes et Saint-Eustache. Trois générations, un mot d'ordre : peu importe, on ouvre.",
+    "Un café de spécialité, une galerie d'art et un bar à fleurs sous un même toit, à Sainte-Marthe-sur-le-Lac, entre Deux-Montagnes et Saint-Eustache. Fondé par l'artiste Julie Lalonde — un mot d'ordre : peu importe, on ouvre.",
 };
 
 export default async function RootLayout({

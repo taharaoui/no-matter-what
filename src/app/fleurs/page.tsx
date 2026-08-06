@@ -152,7 +152,7 @@ export default function FleursPage() {
         </section>
       </div>
 
-      {/* La page se referme comme /histoire — la porte, pas un formulaire :
+      {/* La page se referme comme /a-propos — la porte, pas un formulaire :
           le bar à fleurs n'a pas de vente en ligne, on renvoie sur place. */}
       <section className="bg-ink text-paper-light grain">
         <div className="relative mx-auto max-w-7xl px-6 md:px-10 py-28 md:py-36 flex flex-col items-center text-center">

@@ -23,7 +23,7 @@ export default function Footer() {
               the page closes the way a letter closes. */}
           <Logo variant="lockup" className="w-[190px] h-auto" />
           <p className="mt-6 text-[0.95rem] text-paper-light/60 max-w-xs leading-relaxed">
-            Trois générations, une même adresse.
+            Peu importe. On ouvre.
           </p>
         </div>
 
@@ -40,7 +40,7 @@ export default function Footer() {
         <div>
           <p className="font-utility text-[11px] uppercase tracking-[0.16em] text-grey-300">Explorer</p>
           <ul className="mt-4 space-y-2 text-[0.95rem] text-paper-light/75">
-            <li><Link href="/histoire" className="hover:text-paper-light transition-colors">Notre histoire</Link></li>
+            <li><Link href="/a-propos" className="hover:text-paper-light transition-colors">À propos</Link></li>
             <li><Link href="/menu" className="hover:text-paper-light transition-colors">Menu</Link></li>
             <li><Link href="/galerie" className="hover:text-paper-light transition-colors">Galerie</Link></li>
             <li><Link href="/boutique" className="hover:text-paper-light transition-colors">Boutique</Link></li>

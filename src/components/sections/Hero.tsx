@@ -44,13 +44,13 @@ export default function Hero() {
 
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 border-t border-paper-light/20 pt-8">
           <p className="max-w-md text-paper-light/75 leading-relaxed">
-            Un grand-père qui a commencé avec un comptoir et une théière.
-            Trois générations plus tard : un café, une galerie, un bar à
-            fleurs — un même mot d&apos;ordre. Peu importe. On continue.
+            Une artiste qui peignait pour tenir debout. Aujourd&apos;hui : un
+            café, une galerie, un bar à fleurs — un même mot d&apos;ordre.
+            Peu importe. On ouvre.
           </p>
 
           <Link
-            href="/histoire"
+            href="/a-propos"
             className="group inline-flex items-center gap-3 font-utility text-[11px] uppercase tracking-[0.16em] text-paper-light/85"
           >
             <span className="relative">

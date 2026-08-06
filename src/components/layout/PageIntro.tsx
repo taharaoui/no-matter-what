@@ -3,11 +3,14 @@
  * one site: same eyebrow, same display size, same measure on the lede,
  * same amount of air before the content starts.
  *
- * No rule, no thread, no ornament under the title. The lineage thread was
- * tried here and pulled: stretched to page width it flattens into a plain
- * dotted line, and a motif that means "continuity across generations"
- * under the word "Menu" is decoration wearing a concept's clothes. It
- * stays on /histoire, where it is actually describing something.
+ * No rule, no thread, no ornament under the title. The lineage thread
+ * (components/brand/Thread.tsx) was tried here and pulled: stretched to
+ * page width it flattens into a plain dotted line, and a motif that means
+ * "continuity across generations" under the word "Menu" is decoration
+ * wearing a concept's clothes. It described the old placeholder
+ * three-generations story on /histoire; that page is gone (replaced by
+ * /a-propos, the real single-founder story), so the motif is currently
+ * unused rather than reassigned to somewhere it doesn't fit.
  */
 
 type PageIntroProps = {
