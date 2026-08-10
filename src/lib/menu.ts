@@ -41,7 +41,14 @@ export const MENU: MenuSection[] = [
       { name: "Double espresso", price: "3,95" },
       { name: "Café filtre", price: "2,75", note: "Grand — 2,95 $" },
       { name: "Américano", price: "4,00", note: "Grand — 4,95 $" },
-      { name: "Cappuccino", price: "4,75", note: "Grand — 5,35 $" },
+      {
+        name: "Cappuccino",
+        price: "4,75",
+        note: "Grand — 5,35 $",
+        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Espresso.
+        image: "/images/ai-cappuccino.png",
+        tags: ["potentiel best-seller"],
+      },
       {
         name: "Latté",
         price: "4,95",
@@ -179,6 +186,9 @@ export const MENU: MenuSection[] = [
         name: "Brioche cheesecake",
         desc: "Glaçage cheesy, coulis de fraises maison, fraises fraîches",
         price: "7,95",
+        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Espresso.
+        image: "/images/ai-brioche-cheesecake.png",
+        tags: ["potentiel best-seller"],
       },
       {
         name: "Brioche biscoff caramel",
@@ -258,6 +268,9 @@ export const MENU: MenuSection[] = [
         name: "Dolce affogato",
         desc: "Gelato trois saveurs, coulis de chocolat, espresso, crème vanillée et doigts de dame",
         price: "10,95",
+        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Espresso.
+        image: "/images/ai-affogato.png",
+        tags: ["potentiel best-seller"],
       },
     ],
   },
@@ -296,6 +309,9 @@ export const MENU: MenuSection[] = [
         name: "La Burrata",
         desc: "Burrata, prosciutto, pesto, mélange de tomates, glaçage balsamique",
         price: "18,95",
+        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Espresso.
+        image: "/images/ai-burrata-sandwich.png",
+        tags: ["potentiel best-seller"],
       },
       {
         name: "Poulet toscan",
@@ -318,6 +334,9 @@ export const MENU: MenuSection[] = [
         name: "Panzanella à la burrata",
         desc: "Salade & roquette, mélange de tomates NMW, concombre, burrata, croûtons NMW",
         price: "15,95",
+        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Espresso.
+        image: "/images/ai-panzanella-burrata.png",
+        tags: ["potentiel best-seller"],
       },
     ],
   },
