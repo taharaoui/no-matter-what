@@ -71,6 +71,30 @@ export const MENU: MenuSection[] = [
     ],
   },
   {
+    id: "matcha",
+    title: "Matcha",
+    items: [
+      {
+        name: "Matcha glacé nature",
+        // Prix provisoire — à confirmer.
+        price: "6,95",
+        image: "/images/menu-matcha-3.jpg",
+      },
+      {
+        // Nom à confirmer — couche fruitée rose, fleur en garniture.
+        name: "Matcha glacé — nom à venir (rose)",
+        price: "6,95",
+        image: "/images/menu-matcha-1.jpg",
+      },
+      {
+        // Nom à confirmer — couche fruitée orange, fleur en garniture.
+        name: "Matcha glacé — nom à venir (orange)",
+        price: "6,95",
+        image: "/images/menu-matcha-2.jpg",
+      },
+    ],
+  },
+  {
     id: "smoothies",
     title: "Smoothies",
     items: [
