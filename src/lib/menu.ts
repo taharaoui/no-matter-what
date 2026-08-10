@@ -57,11 +57,21 @@ export const MENU: MenuSection[] = [
         name: "Latté glacé vanille",
         desc: "Mousse froide à la vanille",
         price: "6,95",
+        // IA (Higgsfield, marketing_studio_image) — cup/label réels comme
+        // référence, contenu de la boisson généré. Pas une photo du produit
+        // tel que réellement servi.
+        image: "/images/ai-latte-glace-vanille.png",
+        tags: ["potentiel best-seller"],
       },
       {
         name: "Caramel macchiato glacé",
         desc: "Mousse froide à la vanille",
         price: "7,25",
+        // IA (Higgsfield, marketing_studio_image) — cup/label réels comme
+        // référence, contenu de la boisson généré. Pas une photo du produit
+        // tel que réellement servi.
+        image: "/images/ai-caramel-macchiato-glace.png",
+        tags: ["potentiel best-seller"],
       },
       {
         name: "Latté glacé brioché",
@@ -78,7 +88,10 @@ export const MENU: MenuSection[] = [
         name: "Matcha Latte classique",
         // Prix provisoire — à confirmer.
         price: "6,95",
-        image: "/images/menu-matcha-3.jpg",
+        // IA (Higgsfield, marketing_studio_image) — photo réelle du vrai
+        // cup/label NMW comme référence, remise en scène studio. Remplace
+        // menu-matcha-3.jpg (toujours sur disque, non utilisée).
+        image: "/images/ai-matcha-classique.png",
       },
       {
         // Pas de photo confirmée pour cette saveur — rend en carte de repli.
@@ -89,13 +102,17 @@ export const MENU: MenuSection[] = [
         // Couche fruitée rose — assortie à la photo la plus proche.
         name: "Matcha Fraise & Vanille",
         price: "6,95",
-        image: "/images/menu-matcha-1.jpg",
+        // IA (Higgsfield, marketing_studio_image) — voir commentaire ci-dessus.
+        // Remplace menu-matcha-1.jpg (toujours sur disque, non utilisée).
+        image: "/images/ai-matcha-fraise-vanille.png",
       },
       {
         // Couche fruitée orange — assortie à la photo la plus proche.
         name: "Matcha Mangue & Fruit de la passion",
         price: "6,95",
-        image: "/images/menu-matcha-2.jpg",
+        // IA (Higgsfield, marketing_studio_image) — voir commentaire plus haut.
+        // Remplace menu-matcha-2.jpg (toujours sur disque, non utilisée).
+        image: "/images/ai-matcha-mangue-passion.png",
       },
     ],
   },
