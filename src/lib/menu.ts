@@ -6,6 +6,15 @@ export type MenuItem = {
   price?: string;
   /** Shown as a small mono note beside the price — second size, allergens, etc. */
   note?: string;
+  /** Real product photo. Most items don't have one yet — MenuItemCard falls
+   *  back to a plain card with the name set in Playfair Display rather than
+   *  a generic "missing image" placeholder, so this is safe to leave unset. */
+  image?: string;
+  /** Small badges on the card — e.g. "signature", "végane", "sans gluten".
+   *  Free-form rather than a fixed enum, but only ever set when true of the
+   *  actual item; never used to imply a claim (allergen-free, etc.) that
+   *  hasn't been confirmed. */
+  tags?: string[];
 };
 
 export type MenuSection = {
@@ -38,6 +47,12 @@ export const MENU: MenuSection[] = [
     items: [
       { name: "Café glacé", price: "4,75" },
       { name: "Latté glacé", price: "5,25" },
+      {
+        name: "Cappuccino glacé",
+        desc: "Espresso sur glace, coiffé d'une mousse de lait froide.",
+        image: "/images/menu-cappuccino-glace.jpg",
+        tags: ["signature"],
+      },
       {
         name: "Latté glacé vanille",
         desc: "Mousse froide à la vanille",
@@ -151,7 +166,10 @@ export const MENU: MenuSection[] = [
     title: "Crosti'Croissants",
     intro: "Le croissant, doré et grillé, refermé sur un cœur de fromage fondant.",
     items: [
-      { name: "Salami & provolone" },
+      // Only one photo exists for this section so far, and it isn't tied to
+      // a specific flavour — applied to the first item rather than repeated
+      // across all four, which would read as four identical photos.
+      { name: "Salami & provolone", image: "/images/menu-crosti-croissants.jpg" },
       { name: "Brie, pêches grillées & miel" },
       { name: "Brie & chips de prosciutto" },
       { name: "Provolone & cheddar fort" },
@@ -209,7 +227,12 @@ export const MENU: MenuSection[] = [
         desc: "Poulet, pesto-basilic, roquette, citron, stracciatella, mélange tomates-basilic",
         price: "14,95",
       },
-      { name: "Porchetta" },
+      {
+        name: "Porchetta",
+        desc: "Porc effiloché, mijoté aux herbes, croûte dorée — notre dernière arrivée en carte.",
+        image: "/images/menu-porchetta.jpg",
+        tags: ["signature"],
+      },
     ],
   },
   {
