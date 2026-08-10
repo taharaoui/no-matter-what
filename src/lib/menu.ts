@@ -30,12 +30,25 @@ export const MENU: MenuSection[] = [
     id: "cafe-chaud",
     title: "Café chaud",
     items: [
-      { name: "Espresso", price: "2,85" },
+      {
+        name: "Espresso",
+        price: "2,85",
+        // IA (Higgsfield, nano_banana_2) — génération pure texte, aucune
+        // photo réelle d'espresso NMW en référence. Style/vaisselle
+        // génériques, pas le produit tel que réellement servi.
+        image: "/images/ai-espresso.png",
+      },
       { name: "Double espresso", price: "3,95" },
       { name: "Café filtre", price: "2,75", note: "Grand — 2,95 $" },
       { name: "Américano", price: "4,00", note: "Grand — 4,95 $" },
       { name: "Cappuccino", price: "4,75", note: "Grand — 5,35 $" },
-      { name: "Latté", price: "4,95", note: "Grand — 5,35 $" },
+      {
+        name: "Latté",
+        price: "4,95",
+        note: "Grand — 5,35 $",
+        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Espresso.
+        image: "/images/ai-latte.png",
+      },
       { name: "Latté vanille", price: "5,25", note: "Grand — 6,95 $" },
       { name: "Latté chocolat", price: "4,75", note: "Grand — 6,95 $" },
       { name: "Caramel macchiato", price: "5,50", note: "Grand — 7,25 $" },
@@ -120,7 +133,13 @@ export const MENU: MenuSection[] = [
     id: "smoothies",
     title: "Smoothies",
     items: [
-      { name: "Fraise banane", price: "7,25" },
+      {
+        name: "Fraise banane",
+        price: "7,25",
+        // IA (Higgsfield, nano_banana_2) — génération pure texte, aucune
+        // photo réelle en référence. Pas le produit tel que réellement servi.
+        image: "/images/ai-smoothie-fraise-banane.png",
+      },
       { name: "Mangue-pêche tropical", price: "7,25" },
       { name: "Énergie", desc: "Avocat, banane, mangue", price: "7,95" },
     ],
@@ -150,7 +169,12 @@ export const MENU: MenuSection[] = [
     id: "brioches",
     title: "Brioches",
     items: [
-      { name: "Brioche classique", price: "5,25" },
+      {
+        name: "Brioche classique",
+        price: "5,25",
+        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Fraise banane.
+        image: "/images/ai-brioche-classique.png",
+      },
       {
         name: "Brioche cheesecake",
         desc: "Glaçage cheesy, coulis de fraises maison, fraises fraîches",
@@ -167,7 +191,12 @@ export const MENU: MenuSection[] = [
     id: "croissants",
     title: "Croissants",
     items: [
-      { name: "Croissant classique", price: "3,50" },
+      {
+        name: "Croissant classique",
+        price: "3,50",
+        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Fraise banane.
+        image: "/images/ai-croissant-classique.png",
+      },
       {
         name: "Choco banane",
         desc: "Crème légère, coulis choco-banane",
