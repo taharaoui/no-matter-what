@@ -75,20 +75,25 @@ export const MENU: MenuSection[] = [
     title: "Matcha",
     items: [
       {
-        name: "Matcha glacé nature",
+        name: "Matcha Latte classique",
         // Prix provisoire — à confirmer.
         price: "6,95",
         image: "/images/menu-matcha-3.jpg",
       },
       {
-        // Nom à confirmer — couche fruitée rose, fleur en garniture.
-        name: "Matcha glacé — nom à venir (rose)",
+        // Pas de photo confirmée pour cette saveur — rend en carte de repli.
+        name: "Matcha Lavande",
+        price: "6,95",
+      },
+      {
+        // Couche fruitée rose — assortie à la photo la plus proche.
+        name: "Matcha Fraise & Vanille",
         price: "6,95",
         image: "/images/menu-matcha-1.jpg",
       },
       {
-        // Nom à confirmer — couche fruitée orange, fleur en garniture.
-        name: "Matcha glacé — nom à venir (orange)",
+        // Couche fruitée orange — assortie à la photo la plus proche.
+        name: "Matcha Mangue & Fruit de la passion",
         price: "6,95",
         image: "/images/menu-matcha-2.jpg",
       },
