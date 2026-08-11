@@ -65,7 +65,13 @@ export const MENU: MenuSection[] = [
     id: "cafes-glaces",
     title: "Cafés glacés",
     items: [
-      { name: "Café glacé", price: "4,75" },
+      {
+        name: "Café glacé",
+        price: "4,75",
+        // IA (Higgsfield, nano_banana_2) — génération pure texte, aucune
+        // photo réelle en référence. Pas le produit tel que réellement servi.
+        image: "/images/ai-cafe-glace.png",
+      },
       { name: "Latté glacé", price: "5,25" },
       {
         name: "Cappuccino glacé",
@@ -159,6 +165,8 @@ export const MENU: MenuSection[] = [
         name: "Mojito pêche",
         desc: "Coulis de pêche maison, lime, menthe fraîche, soda",
         price: "7,25",
+        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Café glacé.
+        image: "/images/ai-mojito-peche.png",
       },
       {
         name: "Fraise basilic spritz",
@@ -232,6 +240,8 @@ export const MENU: MenuSection[] = [
         name: "Caprese",
         desc: "Crème salée maison, mélange tomates-basilic",
         price: "8,95",
+        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Café glacé.
+        image: "/images/ai-caprese-croissant.png",
       },
       {
         name: "Saumon fumé",
@@ -278,7 +288,12 @@ export const MENU: MenuSection[] = [
     id: "foccacias",
     title: "Foccacias",
     items: [
-      { name: "Saumon fumé", price: "15,95" },
+      {
+        name: "Saumon fumé",
+        price: "15,95",
+        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Café glacé.
+        image: "/images/ai-foccacia-saumon-fume.png",
+      },
       {
         name: "Prosciutto & pêche",
         desc: "Stracciatella, prosciutto, pêches grillées, miel",
@@ -299,6 +314,8 @@ export const MENU: MenuSection[] = [
         name: "L'Italien",
         desc: "Mortadelle, prosciutto, salami de Gênes, ricotta, roquette, piment grillé, mélange tomate-basilic, huile d'olive, citron, glaçage balsamique",
         price: "16,95",
+        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Café glacé.
+        image: "/images/ai-litalien.png",
       },
       {
         name: "La Bologna",
