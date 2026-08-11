@@ -22,6 +22,11 @@ export type MenuSection = {
   title: string;
   /** One line on why the section exists. Optional — not invented where none was given. */
   intro?: string;
+  /** The section's cover tile on /menu — reuses one of the section's own
+   *  photographed items rather than a separate category shot, so every
+   *  cover is still a real product. Every section has at least one
+   *  photographed item, so this is never a placeholder. */
+  cover: { src: string; alt: string };
   items: MenuItem[];
 };
 
@@ -29,6 +34,7 @@ export const MENU: MenuSection[] = [
   {
     id: "cafe-chaud",
     title: "Café chaud",
+    cover: { src: "/images/ai-cappuccino.png", alt: "Cappuccino, café chaud NMW" },
     items: [
       {
         name: "Espresso",
@@ -64,6 +70,7 @@ export const MENU: MenuSection[] = [
   {
     id: "cafes-glaces",
     title: "Cafés glacés",
+    cover: { src: "/images/menu-cappuccino-glace.jpg", alt: "Cappuccino glacé, cafés glacés NMW" },
     items: [
       {
         name: "Café glacé",
@@ -109,6 +116,7 @@ export const MENU: MenuSection[] = [
   {
     id: "matcha",
     title: "Matcha",
+    cover: { src: "/images/ai-matcha-fraise-vanille.png", alt: "Matcha Fraise & Vanille, section matcha NMW" },
     items: [
       {
         name: "Matcha Latte classique",
@@ -145,6 +153,7 @@ export const MENU: MenuSection[] = [
   {
     id: "smoothies",
     title: "Smoothies",
+    cover: { src: "/images/ai-smoothie-fraise-banane.png", alt: "Smoothie fraise banane, section smoothies NMW" },
     items: [
       {
         name: "Fraise banane",
@@ -160,6 +169,7 @@ export const MENU: MenuSection[] = [
   {
     id: "mocktails",
     title: "Mocktails",
+    cover: { src: "/images/ai-mojito-peche.png", alt: "Mojito pêche, section mocktails NMW" },
     items: [
       {
         name: "Mojito pêche",
@@ -183,6 +193,7 @@ export const MENU: MenuSection[] = [
   {
     id: "brioches",
     title: "Brioches",
+    cover: { src: "/images/ai-brioche-cheesecake.png", alt: "Brioche cheesecake, section brioches NMW" },
     items: [
       {
         name: "Brioche classique",
@@ -208,6 +219,7 @@ export const MENU: MenuSection[] = [
   {
     id: "croissants",
     title: "Croissants",
+    cover: { src: "/images/ai-croissant-classique.png", alt: "Croissant classique, section croissants NMW" },
     items: [
       {
         name: "Croissant classique",
@@ -235,6 +247,7 @@ export const MENU: MenuSection[] = [
   {
     id: "croissants-sales",
     title: "Croissants salés",
+    cover: { src: "/images/ai-caprese-croissant.png", alt: "Croissant Caprese, section croissants salés NMW" },
     items: [
       {
         name: "Caprese",
@@ -259,6 +272,7 @@ export const MENU: MenuSection[] = [
   {
     id: "crosti-croissants",
     title: "Crosti'Croissants",
+    cover: { src: "/images/menu-crosti-croissants.jpg", alt: "Crosti'Croissant, section Crosti'Croissants NMW" },
     intro: "Le croissant, doré et grillé, refermé sur un cœur de fromage fondant.",
     items: [
       // Only one photo exists for this section so far, and it isn't tied to
@@ -273,6 +287,7 @@ export const MENU: MenuSection[] = [
   {
     id: "ptite-douceur",
     title: "P'tite douceur",
+    cover: { src: "/images/ai-affogato.png", alt: "Dolce affogato, section p'tite douceur NMW" },
     items: [
       {
         name: "Dolce affogato",
@@ -287,6 +302,7 @@ export const MENU: MenuSection[] = [
   {
     id: "foccacias",
     title: "Foccacias",
+    cover: { src: "/images/ai-foccacia-saumon-fume.png", alt: "Foccacia saumon fumé, section foccacias NMW" },
     items: [
       {
         name: "Saumon fumé",
@@ -309,6 +325,7 @@ export const MENU: MenuSection[] = [
   {
     id: "sandwichs",
     title: "Sandwichs",
+    cover: { src: "/images/menu-porchetta.jpg", alt: "Porchetta, section sandwichs NMW" },
     items: [
       {
         name: "L'Italien",
@@ -346,6 +363,7 @@ export const MENU: MenuSection[] = [
   {
     id: "salade",
     title: "Salade",
+    cover: { src: "/images/ai-panzanella-burrata.png", alt: "Panzanella à la burrata, section salade NMW" },
     items: [
       {
         name: "Panzanella à la burrata",
