@@ -13,7 +13,7 @@ const FOLLOW_HREF = "#"; // TODO: replace with the real @handle URL once confirm
 
 const SHOTS = [
   { image: "/images/menu-matcha-1.jpg", alt: "Matcha latté préparé au comptoir NMW" },
-  { image: "/images/menu-porchetta.jpg", alt: "Sandwich porchetta du café NMW" },
+  { image: "/images/ai-porchetta.png", alt: "Sandwich porchetta du café NMW" },
   { image: "/images/menu-matcha-2.jpg", alt: "Matcha lavande, café No Matter What" },
   { image: "/images/fleurs-rose-eternelle.jpg", alt: "Rose éternelle du bar à fleurs NMW" },
   { image: "/images/menu-matcha-3.jpg", alt: "Matcha fraise et vanille, café NMW" },

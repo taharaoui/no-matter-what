@@ -9,9 +9,16 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col justify-end overflow-hidden bg-ink text-paper-light grain"
     >
       {/* The room itself, unbranded — the mark is withheld here and reserved
-          for the header, where it appears the moment you scroll. */}
+          for the header, where it appears the moment you scroll.
+
+          IA (Higgsfield, marketing_studio_image) — bar-cafe.jpg (toujours
+          sur disque, encore utilisée par Visit.tsx) comme référence ; la
+          pièce, le mobilier et l'accrochage sont préservés à l'identique,
+          seul l'éclairage est réchauffé pour ce moment d'ouverture. Gardée
+          distincte de la photo réelle utilisée ailleurs sur le site,
+          où l'exactitude prime sur l'ambiance. */}
       <Image
-        src="/images/bar-cafe.jpg"
+        src="/images/ai-hero-interior.png"
         alt="Comptoir, piano et accrochage dans la salle du café No Matter What, à Sainte-Marthe-sur-le-Lac"
         fill
         priority

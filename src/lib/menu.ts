@@ -70,7 +70,7 @@ export const MENU: MenuSection[] = [
   {
     id: "cafes-glaces",
     title: "Cafés glacés",
-    cover: { src: "/images/menu-cappuccino-glace.jpg", alt: "Cappuccino glacé, cafés glacés NMW" },
+    cover: { src: "/images/ai-cappuccino-glace-studio.png", alt: "Cappuccino glacé, cafés glacés NMW" },
     items: [
       {
         name: "Café glacé",
@@ -83,7 +83,10 @@ export const MENU: MenuSection[] = [
       {
         name: "Cappuccino glacé",
         desc: "Espresso sur glace, coiffé d'une mousse de lait froide.",
-        image: "/images/menu-cappuccino-glace.jpg",
+        // IA (Higgsfield, marketing_studio_image) — photo réelle
+        // (menu-cappuccino-glace.jpg, toujours sur disque) comme référence,
+        // remise en scène studio. Cup, boisson et étiquette réels.
+        image: "/images/ai-cappuccino-glace-studio.png",
         tags: ["signature"],
       },
       {
@@ -272,13 +275,16 @@ export const MENU: MenuSection[] = [
   {
     id: "crosti-croissants",
     title: "Crosti'Croissants",
-    cover: { src: "/images/menu-crosti-croissants.jpg", alt: "Crosti'Croissant, section Crosti'Croissants NMW" },
+    cover: { src: "/images/ai-crosti-croissant.png", alt: "Crosti'Croissant, section Crosti'Croissants NMW" },
     intro: "Le croissant, doré et grillé, refermé sur un cœur de fromage fondant.",
     items: [
       // Only one photo exists for this section so far, and it isn't tied to
       // a specific flavour — applied to the first item rather than repeated
       // across all four, which would read as four identical photos.
-      { name: "Salami & provolone", image: "/images/menu-crosti-croissants.jpg" },
+      // IA (Higgsfield, marketing_studio_image) — photo réelle
+      // (menu-crosti-croissants.jpg, toujours sur disque) comme référence,
+      // remise en scène studio. Même croissant, même garniture.
+      { name: "Salami & provolone", image: "/images/ai-crosti-croissant.png" },
       { name: "Brie, pêches grillées & miel" },
       { name: "Brie & chips de prosciutto" },
       { name: "Provolone & cheddar fort" },
@@ -325,7 +331,7 @@ export const MENU: MenuSection[] = [
   {
     id: "sandwichs",
     title: "Sandwichs",
-    cover: { src: "/images/menu-porchetta.jpg", alt: "Porchetta, section sandwichs NMW" },
+    cover: { src: "/images/ai-porchetta.png", alt: "Porchetta, section sandwichs NMW" },
     items: [
       {
         name: "L'Italien",
@@ -355,7 +361,10 @@ export const MENU: MenuSection[] = [
       {
         name: "Porchetta",
         desc: "Porc effiloché, mijoté aux herbes, croûte dorée — notre dernière arrivée en carte.",
-        image: "/images/menu-porchetta.jpg",
+        // IA (Higgsfield, marketing_studio_image) — photo réelle
+        // (menu-porchetta.jpg, toujours sur disque) comme référence,
+        // remise en scène studio. Même sandwich, même garniture.
+        image: "/images/ai-porchetta.png",
         tags: ["signature"],
       },
     ],

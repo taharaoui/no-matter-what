@@ -90,8 +90,13 @@ export const PIECES: Piece[] = [
     price: "Disponible — prix au comptoir",
     label:
       "Une œuvre qui capte l'âme et interpelle. Ce regard intense, chargé d'émotion, semble percer le silence et raconter mille histoires.",
+    // IA (Higgsfield, marketing_studio_image) — photo réelle
+    // (regarde-moi.jpg, toujours sur disque) comme référence ; l'œuvre
+    // elle-même (sujet, coups de pinceau, couleurs) est préservée à
+    // l'identique, seule la présentation (cadre, mur, éclairage) est
+    // générée — pas nécessairement la véritable présentation de la pièce.
     image: {
-      src: "/images/regarde-moi.jpg",
+      src: "/images/ai-regarde-moi.png",
       alt: "Regarde-moi, œuvre de Julie Lalonde, acrylique, exposée au café No Matter What",
     },
     tone: "grey900",

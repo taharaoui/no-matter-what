@@ -8,9 +8,9 @@ import { useReveal } from "@/lib/useReveal";
    carte at /menu stays text-only on purpose (a printed bill of fare); here,
    the job is appetite, not reference. Three real, new items carry it. */
 const SIGNATURE = [
-  { name: "Porchetta", desc: "Porc effiloché, mijoté aux herbes, croûte dorée — notre dernière arrivée en carte.", image: "/images/menu-porchetta.jpg", href: "/menu#sandwichs" },
-  { name: "Crosti'Croissant", desc: "Un croissant doré garni de fromage fondant, grillé à la minute.", image: "/images/menu-crosti-croissants.jpg", href: "/menu#crosti-croissants" },
-  { name: "Cappuccino glacé", desc: "Espresso sur glace, coiffé d'une mousse de lait froide.", image: "/images/menu-cappuccino-glace.jpg", href: "/menu#cafes-glaces" },
+  { name: "Porchetta", desc: "Porc effiloché, mijoté aux herbes, croûte dorée — notre dernière arrivée en carte.", image: "/images/ai-porchetta.png", href: "/menu#sandwichs" },
+  { name: "Crosti'Croissant", desc: "Un croissant doré garni de fromage fondant, grillé à la minute.", image: "/images/ai-crosti-croissant.png", href: "/menu#crosti-croissants" },
+  { name: "Cappuccino glacé", desc: "Espresso sur glace, coiffé d'une mousse de lait froide.", image: "/images/ai-cappuccino-glace-studio.png", href: "/menu#cafes-glaces" },
 ];
 
 export default function MenuPreview() {
