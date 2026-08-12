@@ -57,7 +57,7 @@ export default function MenuItemCard({ item }: MenuItemCardProps) {
             {item.price} $
           </p>
         ) : (
-          <p className="font-utility text-[10px] uppercase tracking-[0.12em] text-grey-500 whitespace-nowrap">
+          <p className="font-utility text-[10px] uppercase tracking-[0.14em] text-grey-500 whitespace-nowrap">
             Nouveau
           </p>
         )}
@@ -69,7 +69,7 @@ export default function MenuItemCard({ item }: MenuItemCardProps) {
         </p>
       )}
       {item.note && (
-        <p className="mt-1 font-utility text-[10px] uppercase tracking-[0.12em] text-ink-soft/50">
+        <p className="mt-1 font-utility text-[10px] uppercase tracking-[0.14em] text-ink-soft/50">
           {item.note}
         </p>
       )}

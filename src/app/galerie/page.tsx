@@ -175,7 +175,7 @@ export default function GaleriePage() {
                 />
               </div>
               <p className="font-display text-2xl md:text-3xl">{artist.name}</p>
-              <p className="font-utility text-[11px] uppercase tracking-[0.12em] text-ink-soft/55 mt-2 leading-relaxed">
+              <p className="font-utility text-[11px] uppercase tracking-[0.14em] text-ink-soft/55 mt-2 leading-relaxed">
                 {artist.based}
               </p>
             </div>

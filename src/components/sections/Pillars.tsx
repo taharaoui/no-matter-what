@@ -47,7 +47,7 @@ export default function Pillars() {
   const ref = useReveal<HTMLDivElement>();
 
   return (
-    <section ref={ref} className="bg-paper text-ink py-28 md:py-36">
+    <section ref={ref} className="bg-paper text-ink py-28 md:py-32">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <div className="reveal max-w-xl mb-14">
           <p className="font-utility text-[11px] uppercase tracking-[0.2em] text-grey-700 mb-4">
@@ -76,6 +76,7 @@ export default function Pillars() {
                     src={pillar.image}
                     alt={pillar.name}
                     fill
+                    sizes="(min-width: 768px) 23vw, 48vw"
                     className={`object-cover transition-transform duration-500 group-hover:scale-[1.03] ${
                       "imagePosition" in pillar ? pillar.imagePosition : ""
                     }`}

@@ -51,7 +51,7 @@ export default function AddToCartForm({ product }: { product: Product }) {
                     key={value}
                     type="button"
                     onClick={() => setSelected((prev) => ({ ...prev, [option.name]: value }))}
-                    className={`border px-4 py-2 font-utility text-[11px] uppercase tracking-[0.12em] transition-colors ${
+                    className={`border px-4 py-2 font-utility text-[11px] uppercase tracking-[0.14em] transition-colors ${
                       active
                         ? "border-ink bg-ink text-paper-light"
                         : "border-ink/25 text-ink-soft/80 hover:border-ink"

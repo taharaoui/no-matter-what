@@ -74,6 +74,7 @@ export default function CartDrawer() {
                           src={image.url}
                           alt={image.altText ?? line.merchandise.product.title}
                           fill
+                          sizes="80px"
                           className="object-cover"
                         />
                       )}
@@ -113,7 +114,7 @@ export default function CartDrawer() {
                           type="button"
                           onClick={() => removeItem(line.id)}
                           disabled={isPending}
-                          className="ml-auto font-utility text-[10px] uppercase tracking-[0.12em] text-ink-soft/50 hover:text-ink transition-colors disabled:opacity-40"
+                          className="ml-auto font-utility text-[10px] uppercase tracking-[0.14em] text-ink-soft/50 hover:text-ink transition-colors disabled:opacity-40"
                         >
                           Retirer
                         </button>

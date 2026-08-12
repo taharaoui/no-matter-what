@@ -54,6 +54,7 @@ export default function InstagramFeed() {
                 src={shot.image}
                 alt={shot.alt}
                 fill
+                sizes="(min-width: 768px) 16vw, 50vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
               />
             </div>

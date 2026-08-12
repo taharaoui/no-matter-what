@@ -42,6 +42,7 @@ export default function Boutique() {
               src="/images/sculpture-1.jpg"
               alt="Céramique sculptée, boutique-cadeaux No Matter What"
               fill
+              sizes="(min-width: 768px) 25vw, 50vw"
               className="object-cover"
             />
           </div>
@@ -55,6 +56,7 @@ export default function Boutique() {
               src="/images/boutique-2.jpg"
               alt="Objets et articles cadeaux en vente à la boutique NMW"
               fill
+              sizes="(min-width: 768px) 25vw, 50vw"
               className="object-cover"
             />
           </div>

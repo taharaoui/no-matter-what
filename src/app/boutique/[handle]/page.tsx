@@ -162,7 +162,7 @@ export default async function ProductPage({
                 </div>
                 <div className="mt-5">
                   <h3 className="font-display text-xl leading-snug">{item.title}</h3>
-                  <p className="font-utility text-[11px] uppercase tracking-[0.12em] text-grey-700 mt-2">
+                  <p className="font-utility text-[11px] uppercase tracking-[0.14em] text-grey-700 mt-2">
                     {formatMoney(item.priceRange.min)}
                   </p>
                 </div>

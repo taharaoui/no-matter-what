@@ -103,7 +103,7 @@ export default async function PiecePage({
             <h2 className="font-display text-3xl md:text-4xl leading-tight">
               {artist?.name}
             </h2>
-            <p className="font-utility text-[11px] uppercase tracking-[0.12em] text-ink-soft/50 mt-2">
+            <p className="font-utility text-[11px] uppercase tracking-[0.14em] text-ink-soft/50 mt-2">
               {artist?.based}
             </p>
             <div className="mt-6 flex flex-col gap-5 text-ink-soft/85 leading-relaxed max-w-xl">

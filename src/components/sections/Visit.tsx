@@ -10,7 +10,7 @@ export default function Visit() {
   const ref = useReveal<HTMLDivElement>();
 
   return (
-    <section id="visite" ref={ref} className="relative bg-ink text-paper-light py-28 md:py-36 grain overflow-hidden">
+    <section id="visite" ref={ref} className="relative bg-ink text-paper-light py-28 md:py-32 grain overflow-hidden">
       <Image
         src="/images/bar-cafe.jpg"
         alt="L'intérieur du café No Matter What à Sainte-Marthe-sur-le-Lac — comptoir, galerie et salle"
@@ -24,7 +24,7 @@ export default function Visit() {
           <p className="font-utility text-[11px] uppercase tracking-[0.2em] text-grey-300 mb-4">
             Venez voir par vous-même
           </p>
-          <h2 className="font-display text-4xl md:text-6xl leading-[1.05]">
+          <h2 className="font-display text-4xl md:text-5xl leading-tight">
             Un café, une galerie,
             <br />
             <span className="italic">une même porte.</span>

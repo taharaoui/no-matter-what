@@ -123,3 +123,16 @@ p {
   background: var(--color-ink);
   color: var(--color-paper);
 }
+
+/* Keyboard-focus ring — one consistent, on-brand treatment for every link
+   and button site-wide, instead of each browser's own default outline.
+   currentColor means it adapts to whichever text color the element
+   already has (ink on light sections, paper-light on dark ones) with no
+   per-component overrides needed. Form inputs keep their own existing
+   focus treatment (a border-color change) — this rule is scoped to
+   links/buttons, which had no focus-visible styling at all before. */
+a:focus-visible,
+button:focus-visible {
+  outline: 1.5px solid currentColor;
+  outline-offset: 3px;
+}

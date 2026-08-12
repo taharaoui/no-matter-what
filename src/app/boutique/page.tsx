@@ -86,7 +86,7 @@ export default async function BoutiquePage() {
                       {truncate(product.description, 80)}
                     </p>
                   )}
-                  <p className="font-utility text-[11px] uppercase tracking-[0.12em] text-grey-700 mt-3 flex items-center gap-2">
+                  <p className="font-utility text-[11px] uppercase tracking-[0.14em] text-grey-700 mt-3 flex items-center gap-2">
                     <span>{formatMoney(product.priceRange.min)}</span>
                     {product.compareAtPrice && (
                       <span className="text-grey-500 line-through">

@@ -17,7 +17,7 @@ export default function MenuPreview() {
   const ref = useReveal<HTMLDivElement>();
 
   return (
-    <section id="menu" ref={ref} className="bg-paper text-ink py-28 md:py-36">
+    <section id="menu" ref={ref} className="bg-paper text-ink py-28 md:py-32">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <div className="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
           <div>
@@ -49,6 +49,7 @@ export default function MenuPreview() {
                   src={item.image}
                   alt={`${item.name}, servi au café No Matter What`}
                   fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

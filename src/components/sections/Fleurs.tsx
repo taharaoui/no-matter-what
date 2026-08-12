@@ -37,6 +37,7 @@ export default function Fleurs() {
                 src="/images/fleurs-rose-eternelle.jpg"
                 alt="Rose éternelle sous cloche de verre, bar à fleurs NMW"
                 fill
+                sizes="(min-width: 768px) 25vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -48,6 +49,7 @@ export default function Fleurs() {
                 src="/images/fleurs-bouquet-mixte.jpg"
                 alt="Bouquet de fleurs fraîches composé au bar à fleurs NMW"
                 fill
+                sizes="(min-width: 768px) 25vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -65,6 +67,7 @@ export default function Fleurs() {
               src="/images/fleurs-precommande-roses.jpg"
               alt="Bouquets de roses sur précommande au bar à fleurs NMW"
               fill
+              sizes="(min-width: 768px) 50vw, 100vw"
               className="object-cover"
             />
           </div>

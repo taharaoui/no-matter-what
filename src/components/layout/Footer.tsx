@@ -82,7 +82,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-paper-light/10">
-        <div className="mx-auto max-w-7xl px-6 md:px-10 py-6 flex flex-col md:flex-row gap-2 items-center justify-between font-utility text-[11px] uppercase tracking-[0.12em] text-paper-light/45">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 py-6 flex flex-col md:flex-row gap-2 items-center justify-between font-utility text-[11px] uppercase tracking-[0.14em] text-paper-light/45">
           <p>© {new Date().getFullYear()} No Matter What</p>
           <p>Sainte-Marthe-sur-le-Lac, avec continuité</p>
         </div>
