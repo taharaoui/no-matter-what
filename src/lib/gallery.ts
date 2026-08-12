@@ -103,6 +103,24 @@ export const PIECES: Piece[] = [
     format: "portrait",
   },
   {
+    slug: "mystere-identite",
+    // Titre réel non fourni — affiché tel quel plutôt qu'inventé.
+    // À remplacer dès que le vrai titre est confirmé.
+    title: "Titre à venir",
+    artist: "julie-lalonde",
+    medium: "Acrylique",
+    dimensions: "24 × 36 po",
+    price: "Disponible — prix au comptoir",
+    label:
+      "Cette œuvre explore le mystère de l'identité à travers un jeu de contrastes entre l'ombre et la lumière. Le vert évoque la nature et la vie, tandis que les zones noires et blanches traduisent une tension entre la présence et l'absence. Le portrait, à la fois réaliste et abstrait, invite à plonger dans une dimension intérieure, où les émotions se fondent dans la matière.",
+    image: {
+      src: "/images/mystere-identite.jpeg",
+      alt: "Portrait aux tons noir, blanc et vert, œuvre de Julie Lalonde, acrylique, exposée au café No Matter What",
+    },
+    tone: "grey900",
+    format: "portrait",
+  },
+  {
     slug: "erosion",
     title: "Érosion",
     artist: "julie-lalonde",
