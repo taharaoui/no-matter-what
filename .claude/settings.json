@@ -8,7 +8,12 @@
       "Bash(echo \"TSC EXIT:$?\")",
       "Bash(pkill -9 -f \"next dev\")",
       "Bash(node node_modules/next/dist/bin/next build)",
-      "Bash(echo \"BUILD EXIT:$?\")"
+      "Bash(echo \"BUILD EXIT:$?\")",
+      "Bash(echo \"ESLINT EXIT: $?\")",
+      "Bash(curl -s http://localhost:3000/ -o /private/tmp/claude-501/-Users-taharaoui-Desktop-no-matter-what/ca8f555b-ae17-4680-861f-e9e1d24d621e/scratchpad/sb-home.html)",
+      "Bash(curl -s http://localhost:3000/menu -o /private/tmp/claude-501/-Users-taharaoui-Desktop-no-matter-what/ca8f555b-ae17-4680-861f-e9e1d24d621e/scratchpad/sb-menu.html)",
+      "Bash(curl -s http://localhost:3000/galerie -o /private/tmp/claude-501/-Users-taharaoui-Desktop-no-matter-what/ca8f555b-ae17-4680-861f-e9e1d24d621e/scratchpad/sb-galerie.html)",
+      "Bash(curl -s http://localhost:3000/galerie/silence -o /private/tmp/claude-501/-Users-taharaoui-Desktop-no-matter-what/ca8f555b-ae17-4680-861f-e9e1d24d621e/scratchpad/sb-piece.html)"
     ]
   }
 }

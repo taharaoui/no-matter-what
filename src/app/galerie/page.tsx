@@ -5,7 +5,7 @@ import PageIntro from "@/components/layout/PageIntro";
 import Plate from "@/components/ui/Plate";
 import WallLabel from "@/components/ui/WallLabel";
 import GalerieContactForm from "@/components/gallery/GalerieContactForm";
-import { PIECES, ARTISTS, GALERIE_INTRO } from "@/lib/gallery";
+import { getPieces, getArtists, GALERIE_INTRO } from "@/lib/gallery";
 
 const ADDRESS_QUERY = "3054A Chemin d'Oka, Sainte-Marthe-sur-le-Lac, QC J0N 1P0";
 const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS_QUERY)}`;
@@ -21,10 +21,31 @@ const ASPECT = {
   landscape: "aspect-[5/3]",
 } as const;
 
-export default function GaleriePage() {
-  const artist = ARTISTS[0];
-  const featured = PIECES.find((p) => p.featured) ?? PIECES[0];
-  const rest = PIECES.filter((p) => p !== featured);
+export default async function GaleriePage() {
+  const [pieces, artists] = await Promise.all([getPieces(), getArtists()]);
+  const artist = artists[0];
+  const artistBySlug = Object.fromEntries(artists.map((a) => [a.slug, a]));
+  const featured = pieces.find((p) => p.featured) ?? pieces[0];
+  const rest = pieces.filter((p) => p !== featured);
+
+  // Supabase unreachable, or the tables are genuinely empty — degrade
+  // rather than crash on `featured.slug` etc. below (same policy as
+  // /boutique's EmptyState for a broken/empty Shopify connection).
+  if (!featured) {
+    return (
+      <>
+        <PageIntro
+          eyebrow={GALERIE_INTRO.eyebrow}
+          title={GALERIE_INTRO.title}
+          titleAccent={GALERIE_INTRO.titleAccent}
+          lede={GALERIE_INTRO.lede}
+        />
+        <p className="mx-auto max-w-7xl px-6 md:px-10 pb-24 md:pb-32 text-ink-soft/70">
+          La galerie est momentanément indisponible — revenez sous peu.
+        </p>
+      </>
+    );
+  }
 
   return (
     <>
@@ -103,7 +124,7 @@ export default function GaleriePage() {
             <p className="font-utility text-[11px] uppercase tracking-[0.2em] text-grey-300 mb-8">
               Pièce en vedette
             </p>
-            <WallLabel piece={featured} dark full />
+            <WallLabel piece={featured} artist={artistBySlug[featured.artist]} dark full />
             <Link
               href={`/galerie/${featured.slug}`}
               className="mt-8 inline-flex items-center border border-paper-light/40 px-6 py-3 font-utility text-[11px] uppercase tracking-[0.16em] hover:bg-paper-light hover:text-ink transition-colors"
@@ -145,7 +166,7 @@ export default function GaleriePage() {
                   />
                 )}
                 <div className="mt-6">
-                  <WallLabel piece={piece} />
+                  <WallLabel piece={piece} artist={artistBySlug[piece.artist]} />
                 </div>
               </Link>
             ))}
@@ -163,37 +184,39 @@ export default function GaleriePage() {
             guide le café depuis le début.
           </p>
 
-          <div className="md:grid md:grid-cols-[16rem_1fr] md:gap-16">
-            <div className="mb-8 md:mb-0">
-              <div className="aspect-square relative overflow-hidden grain border border-ink/10 mb-6 max-w-[16rem]">
-                <Image
-                  src="/images/julie-lalonde.jpg"
-                  alt="Julie Lalonde dans son atelier"
-                  fill
-                  sizes="(min-width: 768px) 16rem, 60vw"
-                  className="object-cover object-[58%_45%]"
-                />
-              </div>
-              <p className="font-display text-2xl md:text-3xl">{artist.name}</p>
-              <p className="font-utility text-[11px] uppercase tracking-[0.14em] text-ink-soft/55 mt-2 leading-relaxed">
-                {artist.based}
-              </p>
-            </div>
-
-            <div className="max-w-2xl">
-              <div className="flex flex-col gap-5 text-[0.95rem] leading-relaxed text-ink-soft/85">
-                {artist.bio.map((para, i) => (
-                  <p key={i}>{para}</p>
-                ))}
-              </div>
-
-              {artist.statement && (
-                <p className="mt-8 border-l border-ink/40 pl-6 font-display italic text-xl md:text-2xl leading-snug text-ink">
-                  {artist.statement}
+          {artist && (
+            <div className="md:grid md:grid-cols-[16rem_1fr] md:gap-16">
+              <div className="mb-8 md:mb-0">
+                <div className="aspect-square relative overflow-hidden grain border border-ink/10 mb-6 max-w-[16rem]">
+                  <Image
+                    src="/images/julie-lalonde.jpg"
+                    alt="Julie Lalonde dans son atelier"
+                    fill
+                    sizes="(min-width: 768px) 16rem, 60vw"
+                    className="object-cover object-[58%_45%]"
+                  />
+                </div>
+                <p className="font-display text-2xl md:text-3xl">{artist.name}</p>
+                <p className="font-utility text-[11px] uppercase tracking-[0.14em] text-ink-soft/55 mt-2 leading-relaxed">
+                  {artist.based}
                 </p>
-              )}
+              </div>
+
+              <div className="max-w-2xl">
+                <div className="flex flex-col gap-5 text-[0.95rem] leading-relaxed text-ink-soft/85">
+                  {artist.bio.map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
+
+                {artist.statement && (
+                  <p className="mt-8 border-l border-ink/40 pl-6 font-display italic text-xl md:text-2xl leading-snug text-ink">
+                    {artist.statement}
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 

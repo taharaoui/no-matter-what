@@ -4,21 +4,30 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useReveal } from "@/lib/useReveal";
-import { PIECES, ARTIST_BY_SLUG } from "@/lib/gallery";
+import type { Artist, Piece } from "@/lib/gallery";
 
-/* Sourced straight from the real catalogue (lib/gallery.ts) rather than a
-   separate hardcoded list — a card that links to a piece and previews its
-   wall label has to be backed by a real piece, so this can't drift from
-   what /galerie actually has. (This replaced an earlier version mixing in
+type GalleryProps = {
+  pieces: Piece[];
+  artists: Artist[];
+};
+
+/* Sourced straight from the real catalogue (lib/gallery.ts, now backed by
+   Supabase) rather than a separate hardcoded list — a card that links to
+   a piece and previews its wall label has to be backed by a real piece,
+   so this can't drift from what /galerie actually has. Fetched by the
+   homepage's Server Component and passed in as props: this is a client
+   component (scroll ref, reveal animation), so it can't await Supabase
+   itself. (This replaced an earlier version mixing in
    uncatalogued/placeholder photos with invented captions.)
 
    Model: a horizontal filmstrip rather than a fixed bento grid — walking
    past a gallery wall, one frame at a time. Every frame shares the same
    aspect ratio, so new pieces just append to the array instead of forcing
    a grid reshuffle to fit an odd count. */
-export default function Gallery() {
+export default function Gallery({ pieces, artists }: GalleryProps) {
   const ref = useReveal<HTMLDivElement>();
   const trackRef = useRef<HTMLDivElement>(null);
+  const artistBySlug = Object.fromEntries(artists.map((a) => [a.slug, a]));
 
   function scrollByFrame(direction: 1 | -1) {
     const track = trackRef.current;
@@ -83,8 +92,8 @@ export default function Gallery() {
         ref={trackRef}
         className="reveal no-scrollbar flex gap-4 md:gap-5 overflow-x-auto snap-x snap-mandatory px-6 md:px-10 pb-2"
       >
-        {PIECES.map((piece) => {
-          const artist = ARTIST_BY_SLUG[piece.artist];
+        {pieces.map((piece) => {
+          const artist = artistBySlug[piece.artist];
           return (
             <Link
               key={piece.slug}

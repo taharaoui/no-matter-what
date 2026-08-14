@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Plate from "@/components/ui/Plate";
 import WallLabel from "@/components/ui/WallLabel";
-import { PIECES, PIECE_BY_SLUG, ARTIST_BY_SLUG } from "@/lib/gallery";
+import { getPieces, getPieceBySlug, getArtistBySlug } from "@/lib/gallery";
 
 const ASPECT = {
   portrait: "aspect-[4/5]",
@@ -12,8 +12,9 @@ const ASPECT = {
   landscape: "aspect-[5/3]",
 } as const;
 
-export function generateStaticParams() {
-  return PIECES.map((piece) => ({ slug: piece.slug }));
+export async function generateStaticParams() {
+  const pieces = await getPieces();
+  return pieces.map((piece) => ({ slug: piece.slug }));
 }
 
 export async function generateMetadata({
@@ -22,10 +23,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const piece = PIECE_BY_SLUG[slug];
+  const piece = await getPieceBySlug(slug);
   if (!piece) return {};
 
-  const artist = ARTIST_BY_SLUG[piece.artist];
+  const artist = await getArtistBySlug(piece.artist);
   return {
     title: `${piece.title} — ${artist?.name ?? ""}`.trim(),
     description: piece.label,
@@ -38,13 +39,13 @@ export default async function PiecePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const piece = PIECE_BY_SLUG[slug];
+  const [piece, pieces] = await Promise.all([getPieceBySlug(slug), getPieces()]);
   if (!piece) notFound();
 
-  const artist = ARTIST_BY_SLUG[piece.artist];
-  const index = PIECES.findIndex((p) => p.slug === piece.slug);
-  const next = PIECES[(index + 1) % PIECES.length];
-  const others = PIECES.filter(
+  const artist = await getArtistBySlug(piece.artist);
+  const index = pieces.findIndex((p) => p.slug === piece.slug);
+  const next = pieces[(index + 1) % pieces.length];
+  const others = pieces.filter(
     (p) => p.artist === piece.artist && p.slug !== piece.slug
   );
 
@@ -82,7 +83,7 @@ export default async function PiecePage({
               />
             )}
             <div className="max-w-md">
-              <WallLabel piece={piece} dark full />
+              <WallLabel piece={piece} artist={artist ?? undefined} dark full />
               {!piece.sold && (
                 <p className="mt-6 text-[0.95rem] text-paper-light/60 leading-relaxed">
                   Vente au comptoir, sans commission d&apos;intermédiaire.

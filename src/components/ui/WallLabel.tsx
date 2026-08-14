@@ -1,4 +1,4 @@
-import { ARTIST_BY_SLUG, type Piece } from "@/lib/gallery";
+import type { Artist, Piece } from "@/lib/gallery";
 
 /**
  * The wall label. Same object printed beside the work in the room, so it
@@ -9,10 +9,16 @@ import { ARTIST_BY_SLUG, type Piece } from "@/lib/gallery";
  *
  * `dark` inverts it for the ink fields; everything else is shared so a
  * label never drifts between the grid and the piece's own page.
+ *
+ * Artist data comes from Supabase now (see lib/gallery.ts), fetched
+ * asynchronously by whichever Server Component renders this — so it's
+ * passed in resolved rather than looked up here, which would need a
+ * synchronous in-memory table this component no longer has access to.
  */
 
 type WallLabelProps = {
   piece: Piece;
+  artist?: Artist;
   dark?: boolean;
   /** The piece page shows the full spec; the grid shows the short form. */
   full?: boolean;
@@ -20,10 +26,10 @@ type WallLabelProps = {
 
 export default function WallLabel({
   piece,
+  artist,
   dark = false,
   full = false,
 }: WallLabelProps) {
-  const artist = ARTIST_BY_SLUG[piece.artist];
 
   const meta = dark ? "text-paper-light/50" : "text-ink-soft/55";
   const body = dark ? "text-paper-light/80" : "text-ink-soft/80";

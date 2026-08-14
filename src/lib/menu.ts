@@ -1,3 +1,11 @@
+import { getSupabase } from "./supabase";
+
+/**
+ * Real content, backed by Supabase (tables: menu_sections, menu_items).
+ * Content now gets added/edited by editing those tables directly, not by
+ * a code deploy.
+ */
+
 export type MenuItem = {
   name: string;
   /** Not every item has one — only set where there's real copy to show. */
@@ -30,358 +38,61 @@ export type MenuSection = {
   items: MenuItem[];
 };
 
-export const MENU: MenuSection[] = [
-  {
-    id: "cafe-chaud",
-    title: "Café chaud",
-    cover: { src: "/images/ai-cappuccino.png", alt: "Cappuccino, café chaud NMW" },
-    items: [
-      {
-        name: "Espresso",
-        price: "2,85",
-        // IA (Higgsfield, nano_banana_2) — génération pure texte, aucune
-        // photo réelle d'espresso NMW en référence. Style/vaisselle
-        // génériques, pas le produit tel que réellement servi.
-        image: "/images/ai-espresso.png",
-      },
-      { name: "Double espresso", price: "3,95" },
-      { name: "Café filtre", price: "2,75", note: "Grand — 2,95 $" },
-      { name: "Américano", price: "4,00", note: "Grand — 4,95 $" },
-      {
-        name: "Cappuccino",
-        price: "4,75",
-        note: "Grand — 5,35 $",
-        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Espresso.
-        image: "/images/ai-cappuccino.png",
-        tags: ["potentiel best-seller"],
-      },
-      {
-        name: "Latté",
-        price: "4,95",
-        note: "Grand — 5,35 $",
-        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Espresso.
-        image: "/images/ai-latte.png",
-      },
-      { name: "Latté vanille", price: "5,25", note: "Grand — 6,95 $" },
-      { name: "Latté chocolat", price: "4,75", note: "Grand — 6,95 $" },
-      { name: "Caramel macchiato", price: "5,50", note: "Grand — 7,25 $" },
-    ],
-  },
-  {
-    id: "cafes-glaces",
-    title: "Cafés glacés",
-    cover: { src: "/images/ai-cappuccino-glace-studio.png", alt: "Cappuccino glacé, cafés glacés NMW" },
-    items: [
-      {
-        name: "Café glacé",
-        price: "4,75",
-        // IA (Higgsfield, nano_banana_2) — génération pure texte, aucune
-        // photo réelle en référence. Pas le produit tel que réellement servi.
-        image: "/images/ai-cafe-glace.png",
-      },
-      { name: "Latté glacé", price: "5,25" },
-      {
-        name: "Cappuccino glacé",
-        desc: "Espresso sur glace, coiffé d'une mousse de lait froide.",
-        // IA (Higgsfield, marketing_studio_image) — photo réelle
-        // (menu-cappuccino-glace.jpg, toujours sur disque) comme référence,
-        // remise en scène studio. Cup, boisson et étiquette réels.
-        image: "/images/ai-cappuccino-glace-studio.png",
-        tags: ["signature"],
-      },
-      {
-        name: "Latté glacé vanille",
-        desc: "Mousse froide à la vanille",
-        price: "6,95",
-        // IA (Higgsfield, marketing_studio_image) — cup/label réels comme
-        // référence, contenu de la boisson généré. Pas une photo du produit
-        // tel que réellement servi.
-        image: "/images/ai-latte-glace-vanille.png",
-        tags: ["potentiel best-seller"],
-      },
-      {
-        name: "Caramel macchiato glacé",
-        desc: "Mousse froide à la vanille",
-        price: "7,25",
-        // IA (Higgsfield, marketing_studio_image) — cup/label réels comme
-        // référence, contenu de la boisson généré. Pas une photo du produit
-        // tel que réellement servi.
-        image: "/images/ai-caramel-macchiato-glace.png",
-        tags: ["potentiel best-seller"],
-      },
-      {
-        name: "Latté glacé brioché",
-        desc: "Shaker cassonade, crème vanillée",
-        price: "7,35",
-      },
-    ],
-  },
-  {
-    id: "matcha",
-    title: "Matcha",
-    cover: { src: "/images/ai-matcha-fraise-vanille.png", alt: "Matcha Fraise & Vanille, section matcha NMW" },
-    items: [
-      {
-        name: "Matcha Latte classique",
-        // Prix provisoire — à confirmer.
-        price: "6,95",
-        // IA (Higgsfield, marketing_studio_image) — photo réelle du vrai
-        // cup/label NMW comme référence, remise en scène studio. Remplace
-        // menu-matcha-3.jpg (toujours sur disque, non utilisée).
-        image: "/images/ai-matcha-classique.png",
-      },
-      {
-        // Pas de photo confirmée pour cette saveur — rend en carte de repli.
-        name: "Matcha Lavande",
-        price: "6,95",
-      },
-      {
-        // Couche fruitée rose — assortie à la photo la plus proche.
-        name: "Matcha Fraise & Vanille",
-        price: "6,95",
-        // IA (Higgsfield, marketing_studio_image) — voir commentaire ci-dessus.
-        // Remplace menu-matcha-1.jpg (toujours sur disque, non utilisée).
-        image: "/images/ai-matcha-fraise-vanille.png",
-      },
-      {
-        // Couche fruitée orange — assortie à la photo la plus proche.
-        name: "Matcha Mangue & Fruit de la passion",
-        price: "6,95",
-        // IA (Higgsfield, marketing_studio_image) — voir commentaire plus haut.
-        // Remplace menu-matcha-2.jpg (toujours sur disque, non utilisée).
-        image: "/images/ai-matcha-mangue-passion.png",
-      },
-    ],
-  },
-  {
-    id: "smoothies",
-    title: "Smoothies",
-    cover: { src: "/images/ai-smoothie-fraise-banane.png", alt: "Smoothie fraise banane, section smoothies NMW" },
-    items: [
-      {
-        name: "Fraise banane",
-        price: "7,25",
-        // IA (Higgsfield, nano_banana_2) — génération pure texte, aucune
-        // photo réelle en référence. Pas le produit tel que réellement servi.
-        image: "/images/ai-smoothie-fraise-banane.png",
-      },
-      { name: "Mangue-pêche tropical", price: "7,25" },
-      { name: "Énergie", desc: "Avocat, banane, mangue", price: "7,95" },
-    ],
-  },
-  {
-    id: "mocktails",
-    title: "Mocktails",
-    cover: { src: "/images/ai-mojito-peche.png", alt: "Mojito pêche, section mocktails NMW" },
-    items: [
-      {
-        name: "Mojito pêche",
-        desc: "Coulis de pêche maison, lime, menthe fraîche, soda",
-        price: "7,25",
-        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Café glacé.
-        image: "/images/ai-mojito-peche.png",
-      },
-      {
-        name: "Fraise basilic spritz",
-        desc: "Coulis de fraise maison, citron, basilic frais, soda",
-        price: "7,25",
-      },
-      {
-        name: "Mangue sunrise",
-        desc: "Coulis de mangue maison, jus d'orange, soda",
-        price: "7,25",
-      },
-    ],
-  },
-  {
-    id: "brioches",
-    title: "Brioches",
-    cover: { src: "/images/ai-brioche-cheesecake.png", alt: "Brioche cheesecake, section brioches NMW" },
-    items: [
-      {
-        name: "Brioche classique",
-        price: "5,25",
-        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Fraise banane.
-        image: "/images/ai-brioche-classique.png",
-      },
-      {
-        name: "Brioche cheesecake",
-        desc: "Glaçage cheesy, coulis de fraises maison, fraises fraîches",
-        price: "7,95",
-        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Espresso.
-        image: "/images/ai-brioche-cheesecake.png",
-        tags: ["potentiel best-seller"],
-      },
-      {
-        name: "Brioche biscoff caramel",
-        desc: "Glaçage cheesy, coulis caramel, crumble Biscoff",
-        price: "7,95",
-      },
-    ],
-  },
-  {
-    id: "croissants",
-    title: "Croissants",
-    cover: { src: "/images/ai-croissant-classique.png", alt: "Croissant classique, section croissants NMW" },
-    items: [
-      {
-        name: "Croissant classique",
-        price: "3,50",
-        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Fraise banane.
-        image: "/images/ai-croissant-classique.png",
-      },
-      {
-        name: "Choco banane",
-        desc: "Crème légère, coulis choco-banane",
-        price: "7,95",
-      },
-      {
-        name: "Fraise shortcake",
-        desc: "Crème légère, fraises fraîches, coulis de fraise maison",
-        price: "7,95",
-      },
-      {
-        name: "Pêche mangue",
-        desc: "Crème légère, pêche grillée, coulis de mangue maison, noix de coco grillée, lime",
-        price: "7,95",
-      },
-    ],
-  },
-  {
-    id: "croissants-sales",
-    title: "Croissants salés",
-    cover: { src: "/images/ai-caprese-croissant.png", alt: "Croissant Caprese, section croissants salés NMW" },
-    items: [
-      {
-        name: "Caprese",
-        desc: "Crème salée maison, mélange tomates-basilic",
-        price: "8,95",
-        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Café glacé.
-        image: "/images/ai-caprese-croissant.png",
-      },
-      {
-        name: "Saumon fumé",
-        desc: "Crème salée maison, saumon fumé, avocat, huile citronnée, aneth",
-        price: "9,95",
-      },
-      {
-        name: "Mortadelle",
-        desc: "Crème salée maison, mortadelle, miel",
-        price: "8,95",
-      },
-      { name: "Jambon-provolone", price: "9,95" },
-    ],
-  },
-  {
-    id: "crosti-croissants",
-    title: "Crosti'Croissants",
-    cover: { src: "/images/ai-crosti-croissant.png", alt: "Crosti'Croissant, section Crosti'Croissants NMW" },
-    intro: "Le croissant, doré et grillé, refermé sur un cœur de fromage fondant.",
-    items: [
-      // Only one photo exists for this section so far, and it isn't tied to
-      // a specific flavour — applied to the first item rather than repeated
-      // across all four, which would read as four identical photos.
-      // IA (Higgsfield, marketing_studio_image) — photo réelle
-      // (menu-crosti-croissants.jpg, toujours sur disque) comme référence,
-      // remise en scène studio. Même croissant, même garniture.
-      { name: "Salami & provolone", image: "/images/ai-crosti-croissant.png" },
-      { name: "Brie, pêches grillées & miel" },
-      { name: "Brie & chips de prosciutto" },
-      { name: "Provolone & cheddar fort" },
-    ],
-  },
-  {
-    id: "ptite-douceur",
-    title: "P'tite douceur",
-    cover: { src: "/images/ai-affogato.png", alt: "Dolce affogato, section p'tite douceur NMW" },
-    items: [
-      {
-        name: "Dolce affogato",
-        desc: "Gelato trois saveurs, coulis de chocolat, espresso, crème vanillée et doigts de dame",
-        price: "10,95",
-        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Espresso.
-        image: "/images/ai-affogato.png",
-        tags: ["potentiel best-seller"],
-      },
-    ],
-  },
-  {
-    id: "foccacias",
-    title: "Foccacias",
-    cover: { src: "/images/ai-foccacia-saumon-fume.png", alt: "Foccacia saumon fumé, section foccacias NMW" },
-    items: [
-      {
-        name: "Saumon fumé",
-        price: "15,95",
-        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Café glacé.
-        image: "/images/ai-foccacia-saumon-fume.png",
-      },
-      {
-        name: "Prosciutto & pêche",
-        desc: "Stracciatella, prosciutto, pêches grillées, miel",
-        price: "14,95",
-      },
-      {
-        name: "Légumes grillés",
-        desc: "Ricotta, légumes grillés, mélange de tomates & basilic, huile d'olive",
-        price: "13,95",
-      },
-    ],
-  },
-  {
-    id: "sandwichs",
-    title: "Sandwichs",
-    cover: { src: "/images/ai-porchetta.png", alt: "Porchetta, section sandwichs NMW" },
-    items: [
-      {
-        name: "L'Italien",
-        desc: "Mortadelle, prosciutto, salami de Gênes, ricotta, roquette, piment grillé, mélange tomate-basilic, huile d'olive, citron, glaçage balsamique",
-        price: "16,95",
-        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Café glacé.
-        image: "/images/ai-litalien.png",
-      },
-      {
-        name: "La Bologna",
-        desc: "Mortadelle, stracciatella, roquette, miel, huile d'olive, poivre noir",
-        price: "15,95",
-      },
-      {
-        name: "La Burrata",
-        desc: "Burrata, prosciutto, pesto, mélange de tomates, glaçage balsamique",
-        price: "18,95",
-        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Espresso.
-        image: "/images/ai-burrata-sandwich.png",
-        tags: ["potentiel best-seller"],
-      },
-      {
-        name: "Poulet toscan",
-        desc: "Poulet, pesto-basilic, roquette, citron, stracciatella, mélange tomates-basilic",
-        price: "14,95",
-      },
-      {
-        name: "Porchetta",
-        desc: "Porc effiloché, mijoté aux herbes, croûte dorée — notre dernière arrivée en carte.",
-        // IA (Higgsfield, marketing_studio_image) — photo réelle
-        // (menu-porchetta.jpg, toujours sur disque) comme référence,
-        // remise en scène studio. Même sandwich, même garniture.
-        image: "/images/ai-porchetta.png",
-        tags: ["signature"],
-      },
-    ],
-  },
-  {
-    id: "salade",
-    title: "Salade",
-    cover: { src: "/images/ai-panzanella-burrata.png", alt: "Panzanella à la burrata, section salade NMW" },
-    items: [
-      {
-        name: "Panzanella à la burrata",
-        desc: "Salade & roquette, mélange de tomates NMW, concombre, burrata, croûtons NMW",
-        price: "15,95",
-        // IA (Higgsfield, nano_banana_2) — voir commentaire sur Espresso.
-        image: "/images/ai-panzanella-burrata.png",
-        tags: ["potentiel best-seller"],
-      },
-    ],
-  },
-];
+type SectionRow = {
+  id: string;
+  title: string;
+  intro: string | null;
+  cover_src: string;
+  cover_alt: string;
+  sort_order: number;
+};
+
+type ItemRow = {
+  section_id: string;
+  name: string;
+  description: string | null;
+  price: string | null;
+  note: string | null;
+  image: string | null;
+  tags: string[] | null;
+  sort_order: number;
+};
+
+function reshapeItem(row: ItemRow): MenuItem {
+  return {
+    name: row.name,
+    desc: row.description ?? undefined,
+    price: row.price ?? undefined,
+    note: row.note ?? undefined,
+    image: row.image ?? undefined,
+    tags: row.tags ?? undefined,
+  };
+}
+
+/* Degrades to empty rather than throw — same policy as lib/shopify and
+   lib/gallery: a broken Supabase connection must not take the page down. */
+export async function getMenu(): Promise<MenuSection[]> {
+  try {
+    const db = getSupabase();
+    const [sectionsRes, itemsRes] = await Promise.all([
+      db.from("menu_sections").select("*").order("sort_order"),
+      db.from("menu_items").select("*").order("sort_order"),
+    ]);
+    if (sectionsRes.error) throw sectionsRes.error;
+    if (itemsRes.error) throw itemsRes.error;
+
+    const sections = sectionsRes.data as SectionRow[];
+    const items = itemsRes.data as ItemRow[];
+
+    return sections.map((s) => ({
+      id: s.id,
+      title: s.title,
+      intro: s.intro ?? undefined,
+      cover: { src: s.cover_src, alt: s.cover_alt },
+      items: items.filter((i) => i.section_id === s.id).map(reshapeItem),
+    }));
+  } catch (err) {
+    console.error("[supabase] getMenu failed:", err);
+    return [];
+  }
+}

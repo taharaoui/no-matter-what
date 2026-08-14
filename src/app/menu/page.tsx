@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageIntro from "@/components/layout/PageIntro";
 import MenuBrowser from "@/components/menu/MenuBrowser";
-import { MENU } from "@/lib/menu";
+import { getMenu } from "@/lib/menu";
 
 export const metadata: Metadata = {
   title: "Menu",
@@ -9,7 +9,9 @@ export const metadata: Metadata = {
     "Café de spécialité, brioches, croissants, foccacias, sandwichs et salade — la carte complète du café No Matter What, à Sainte-Marthe-sur-le-Lac.",
 };
 
-export default function MenuPage() {
+export default async function MenuPage() {
+  const sections = await getMenu();
+
   return (
     <>
       <PageIntro
@@ -17,7 +19,7 @@ export default function MenuPage() {
         title="La carte"
         lede="Un rayon par nature de produit — cliquez une photo pour voir ce qu'elle annonce."
       />
-      <MenuBrowser sections={MENU} />
+      <MenuBrowser sections={sections} />
     </>
   );
 }

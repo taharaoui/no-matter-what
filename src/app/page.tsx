@@ -8,15 +8,18 @@ import Fleurs from "@/components/sections/Fleurs";
 import Testimonials from "@/components/sections/Testimonials";
 import InstagramFeed from "@/components/sections/InstagramFeed";
 import Visit from "@/components/sections/Visit";
+import { getPieces, getArtists } from "@/lib/gallery";
 
-export default function Home() {
+export default async function Home() {
+  const [pieces, artists] = await Promise.all([getPieces(), getArtists()]);
+
   return (
     <>
       <Hero />
       <Manifesto />
       <Pillars />
       <MenuPreview />
-      <Gallery />
+      <Gallery pieces={pieces} artists={artists} />
       <Boutique />
       <Fleurs />
       <Testimonials />
