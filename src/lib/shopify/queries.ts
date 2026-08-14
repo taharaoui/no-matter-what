@@ -50,6 +50,50 @@ export const CART_FRAGMENT = /* GraphQL */ `
   }
 `;
 
+/* Shared field selection for the /boutique grid — used both for the root
+   catalog read and for a single collection's products, so the two stay in
+   sync and can be reshaped with the same function. */
+const PRODUCT_LIST_ITEM_FRAGMENT = /* GraphQL */ `
+  fragment ProductListItemFragment on Product {
+    id
+    handle
+    title
+    description
+    availableForSale
+    tags
+    productType
+    vendor
+    featuredImage {
+      url
+      altText
+      width
+      height
+    }
+    images(first: 2) {
+      edges {
+        node {
+          url
+          altText
+          width
+          height
+        }
+      }
+    }
+    priceRange {
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+    compareAtPriceRange {
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+  }
+`;
+
 /* Root `products`, not scoped to any collection — must surface whatever a
    real store's catalog actually is, not just what's assigned to one
    collection like the demo store's "frontpage". */
@@ -58,46 +102,44 @@ export const PRODUCTS_QUERY = /* GraphQL */ `
     products(first: $first, sortKey: TITLE) {
       edges {
         node {
+          ...ProductListItemFragment
+        }
+      }
+    }
+  }
+  ${PRODUCT_LIST_ITEM_FRAGMENT}
+`;
+
+/* Every collection, for the category dropdown on /boutique. */
+export const COLLECTIONS_QUERY = /* GraphQL */ `
+  query Collections($first: Int!) {
+    collections(first: $first, sortKey: TITLE) {
+      edges {
+        node {
           id
           handle
           title
-          description
-          availableForSale
-          tags
-          productType
-          vendor
-          featuredImage {
-            url
-            altText
-            width
-            height
-          }
-          images(first: 2) {
-            edges {
-              node {
-                url
-                altText
-                width
-                height
-              }
-            }
-          }
-          priceRange {
-            minVariantPrice {
-              amount
-              currencyCode
-            }
-          }
-          compareAtPriceRange {
-            minVariantPrice {
-              amount
-              currencyCode
-            }
+        }
+      }
+    }
+  }
+`;
+
+/* Products scoped to one collection, once a category is picked in the
+   dropdown. */
+export const PRODUCTS_BY_COLLECTION_QUERY = /* GraphQL */ `
+  query ProductsByCollection($handle: String!, $first: Int!) {
+    collection(handle: $handle) {
+      products(first: $first, sortKey: TITLE) {
+        edges {
+          node {
+            ...ProductListItemFragment
           }
         }
       }
     }
   }
+  ${PRODUCT_LIST_ITEM_FRAGMENT}
 `;
 
 export const PRODUCT_BY_HANDLE_QUERY = /* GraphQL */ `

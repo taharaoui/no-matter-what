@@ -2,6 +2,8 @@ import { shopifyFetch, ShopifyApiError } from "./client";
 import {
   PRODUCTS_QUERY,
   PRODUCT_BY_HANDLE_QUERY,
+  COLLECTIONS_QUERY,
+  PRODUCTS_BY_COLLECTION_QUERY,
   CART_QUERY,
 } from "./queries";
 import {
@@ -13,18 +15,22 @@ import {
 import {
   edgesToNodes,
   reshapeCart,
+  reshapeCollection,
   reshapeProduct,
   reshapeProductListItem,
   type RawCart,
+  type RawCollectionsData,
   type RawProductByHandleData,
+  type RawProductsByCollectionData,
   type RawProductsData,
 } from "./reshape";
-import type { Cart, CartLineInput, Product, ProductListItem } from "./types";
+import type { Cart, CartLineInput, Collection, Product, ProductListItem } from "./types";
 
 export type {
   Cart,
   CartLine,
   CartLineInput,
+  Collection,
   Product,
   ProductListItem,
   ProductImage,
@@ -45,6 +51,30 @@ export async function getProducts(): Promise<ProductListItem[]> {
     return edgesToNodes(data.products).map(reshapeProductListItem);
   } catch (err) {
     console.error("[shopify] getProducts failed:", err);
+    return [];
+  }
+}
+
+export async function getCollections(): Promise<Collection[]> {
+  try {
+    const data = await shopifyFetch<RawCollectionsData>(COLLECTIONS_QUERY, { first: 20 });
+    return edgesToNodes(data.collections).map(reshapeCollection);
+  } catch (err) {
+    console.error("[shopify] getCollections failed:", err);
+    return [];
+  }
+}
+
+export async function getProductsByCollection(handle: string): Promise<ProductListItem[]> {
+  try {
+    const data = await shopifyFetch<RawProductsByCollectionData>(PRODUCTS_BY_COLLECTION_QUERY, {
+      handle,
+      first: 100,
+    });
+    if (!data.collection) return [];
+    return edgesToNodes(data.collection.products).map(reshapeProductListItem);
+  } catch (err) {
+    console.error("[shopify] getProductsByCollection failed:", err);
     return [];
   }
 }
