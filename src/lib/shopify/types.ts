@@ -3,6 +3,12 @@ export type Money = {
   currencyCode: string;
 };
 
+export type Collection = {
+  id: string;
+  handle: string;
+  title: string;
+};
+
 export type ProductImage = {
   url: string;
   altText: string | null;

@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import PageIntro from "@/components/layout/PageIntro";
 import Plate from "@/components/ui/Plate";
-import { getProducts } from "@/lib/shopify";
+import CategoryFilter from "@/components/boutique/CategoryFilter";
+import { getCollections, getProducts, getProductsByCollection } from "@/lib/shopify";
 import { formatMoney, truncate } from "@/lib/shopify/format";
 
 export const revalidate = 60;
@@ -14,8 +15,19 @@ export const metadata: Metadata = {
     "Céramique, cafetières et objets choisis pour durer — la boutique du café No Matter What, à Sainte-Marthe-sur-le-Lac.",
 };
 
-export default async function BoutiquePage() {
-  const products = await getProducts();
+type BoutiquePageProps = {
+  searchParams: Promise<{ categorie?: string }>;
+};
+
+export default async function BoutiquePage({ searchParams }: BoutiquePageProps) {
+  const { categorie } = await searchParams;
+
+  /* All collections feed the dropdown regardless of which one is active;
+     only the product grid itself is scoped to the selected category. */
+  const [collections, products] = await Promise.all([
+    getCollections(),
+    categorie ? getProductsByCollection(categorie) : getProducts(),
+  ]);
 
   return (
     <>
@@ -27,8 +39,10 @@ export default async function BoutiquePage() {
       />
 
       <div className="mx-auto max-w-7xl px-6 md:px-10 pb-24 md:pb-32">
+        <CategoryFilter collections={collections} selected={categorie ?? null} />
+
         {products.length === 0 ? (
-          <EmptyState />
+          <EmptyState filtered={Boolean(categorie)} />
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
             {products.map((product) => (
@@ -104,16 +118,19 @@ export default async function BoutiquePage() {
   );
 }
 
-function EmptyState() {
+function EmptyState({ filtered }: { filtered: boolean }) {
   return (
     <div className="py-16 md:py-24 flex flex-col items-center text-center">
       <Plate tone="grey100" matted className="w-24 h-24 mb-10" />
       <h2 className="font-display text-2xl md:text-3xl leading-snug max-w-md">
-        La boutique en ligne arrive bientôt.
+        {filtered
+          ? "Rien dans cette catégorie pour le moment."
+          : "La boutique en ligne arrive bientôt."}
       </h2>
       <p className="mt-4 max-w-sm text-ink-soft/70 leading-relaxed">
-        Aucun article n&apos;est publié à la vente en ligne pour le moment —
-        passez nous voir au comptoir en attendant, ou revenez sous peu.
+        {filtered
+          ? "Essayez une autre catégorie, ou revenez sous peu — de nouveaux articles s'en viennent."
+          : "Aucun article n'est publié à la vente en ligne pour le moment — passez nous voir au comptoir en attendant, ou revenez sous peu."}
       </p>
     </div>
   );

@@ -1,6 +1,7 @@
 import type {
   Cart,
   CartLine,
+  Collection,
   Money,
   Product,
   ProductImage,
@@ -36,6 +37,14 @@ type RawProductListNode = {
 };
 
 export type RawProductsData = { products: Connection<RawProductListNode> };
+
+type RawCollectionNode = { id: string; handle: string; title: string };
+
+export type RawCollectionsData = { collections: Connection<RawCollectionNode> };
+
+export type RawProductsByCollectionData = {
+  collection: { products: Connection<RawProductListNode> } | null;
+};
 
 type RawVariantNode = {
   id: string;
@@ -132,6 +141,10 @@ export function reshapeProductListItem(raw: RawProductListNode): ProductListItem
     productType: raw.productType,
     vendor: raw.vendor,
   };
+}
+
+export function reshapeCollection(raw: RawCollectionNode): Collection {
+  return { id: raw.id, handle: raw.handle, title: raw.title };
 }
 
 export function reshapeProduct(raw: RawProductDetailNode): Product {
