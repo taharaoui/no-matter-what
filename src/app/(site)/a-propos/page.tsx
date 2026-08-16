@@ -5,6 +5,35 @@ import PageIntro from "@/components/layout/PageIntro";
 import Logo from "@/components/brand/Logo";
 import ContactForm from "@/components/contact/ContactForm";
 import { ADDRESS_LINES, HOURS_LINES, MAPS_URL } from "@/lib/business";
+import { getAboutContent, type AboutContent } from "@/lib/about";
+
+/* Same text this page always had — now also the seed row in Supabase's
+   about_content table, and kept here as the fallback if that table is
+   ever unreachable, same policy as lib/menu and lib/gallery's reads
+   degrading rather than taking the page down. */
+const FALLBACK: AboutContent = {
+  manifestoQuote:
+    "Renaître n'est pas recommencer. C'est ouvrir un café, no matter what.",
+  storyEyebrow: "L'histoire de Julie Lalonde",
+  storyHeading: "De la toile",
+  storyHeadingAccent: "au comptoir.",
+  storyParagraphs: [
+    "Tout commence à Huberdeau, dans les Laurentides, là où le silence et la forêt apprennent à regarder longtemps avant de parler. Julie Lalonde y grandit avec un crayon greffé à la main — les marges de son agenda d'école se remplissent de croquis et de poèmes bien avant qu'elle ne se dise artiste. Autodidacte, elle n'a jamais suivi d'école d'art. Elle a simplement continué à créer, envers et contre tout.",
+    "La peinture, elle, arrive plus tard — dans la rupture. Le diagnostic de cancer de son père, puis son départ trois mois plus tard, la laissent sans souffle. Elle prend un pinceau pour la première fois non pas pour faire joli, mais pour survivre à ce qui n'a pas de mots. Peindre devient une manière de déposer ce qui pèse trop.",
+    "De cette ouverture naît une pratique multidisciplinaire : un certificat en arts visuels, puis la photographie, la sculpture, le tatouage. En 2014, elle organise son premier événement artistique — un rassemblement d'artistes d'ici, déjà une façon de bâtir une communauté plutôt qu'une carrière en solo. Son parcours se poursuit avec Toutes c'Elles, une exposition intime portée par des histoires de femmes, de force et de transformation.",
+  ],
+  storyPullquote:
+    "Renaître n'est pas recommencer. Renaître, c'est devenir soi-même — même dans l'imperfection.",
+  storyImage: "/images/julie-lalonde.jpg",
+  whyNameHeading: "No Matter What.",
+  whyNameHeadingAccent: "Peu importe.",
+  whyNameParagraphs: [
+    "C'est la phrase qui a porté Julie à travers la perte, le doute, les recommencements — et c'est celle qu'elle a choisie pour ouvrir un lieu. Pas un café de plus, mais une toile grandeur nature : un endroit où l'art, la matière et l'accueil vivent sous le même toit, avec la même logique que sa peinture — laisser une place à ce qui est brut, vrai, parfois imparfait.",
+    "C'est ainsi qu'est né ce café à Sainte-Marthe-sur-le-Lac, au 3054A chemin d'Oka, entre Deux-Montagnes et Saint-Eustache, en plein cœur des Laurentides. NMW y a ouvert ses portes le 3 juillet — un café de spécialité pensé comme une extension de l'atelier, où l'on n'entre pas seulement pour commander un café, mais dans l'univers d'une artiste.",
+  ],
+  closingText:
+    "NMW ne se raconte pas vraiment — ça se visite. Passez au 3054A chemin d'Oka, à Sainte-Marthe-sur-le-Lac, pour un café, une œuvre ou un bouquet. Peu importe la raison : la porte s'ouvre pareil.",
+};
 
 const OFFRE = [
   {
@@ -43,7 +72,9 @@ export const metadata: Metadata = {
     "Café de spécialité, galerie d'art et bar à fleurs signés Julie Lalonde. Découvrez NMW, adresse hybride à Sainte-Marthe-sur-le-Lac, entre Laurentides et Deux-Montagnes.",
 };
 
-export default function AProposPage() {
+export default async function AProposPage() {
+  const content = (await getAboutContent()) ?? FALLBACK;
+
   return (
     <>
       <PageIntro
@@ -106,8 +137,7 @@ export default function AProposPage() {
       <section className="bg-ink text-paper-light py-20 md:py-28">
         <div className="mx-auto max-w-2xl px-6 md:px-10 text-center">
           <p className="font-display italic text-3xl md:text-5xl leading-[1.15]">
-            &ldquo;Renaître n&apos;est pas recommencer. C&apos;est ouvrir un
-            café, no matter what.&rdquo;
+            &ldquo;{content.manifestoQuote}&rdquo;
           </p>
         </div>
       </section>
@@ -119,7 +149,7 @@ export default function AProposPage() {
           <div>
             <div className="aspect-[4/5] relative overflow-hidden grain border border-ink/10">
               <Image
-                src="/images/julie-lalonde.jpg"
+                src={content.storyImage}
                 alt="Julie Lalonde dans son atelier"
                 fill
                 sizes="(min-width: 768px) 22rem, 90vw"
@@ -130,46 +160,20 @@ export default function AProposPage() {
 
           <div className="max-w-2xl">
             <p className="font-utility text-[11px] uppercase tracking-[0.2em] text-grey-700 mb-4">
-              L&apos;histoire de Julie Lalonde
+              {content.storyEyebrow}
             </p>
             <h2 className="font-display text-3xl md:text-4xl leading-tight mb-8">
-              De la toile <span className="italic">au comptoir.</span>
+              {content.storyHeading} <span className="italic">{content.storyHeadingAccent}</span>
             </h2>
 
             <div className="flex flex-col gap-6 text-ink-soft/90 leading-[1.75]">
-              <p>
-                Tout commence à Huberdeau, dans les Laurentides, là où le
-                silence et la forêt apprennent à regarder longtemps avant de
-                parler. Julie Lalonde y grandit avec un crayon greffé à la
-                main — les marges de son agenda d&apos;école se remplissent
-                de croquis et de poèmes bien avant qu&apos;elle ne se dise
-                artiste. Autodidacte, elle n&apos;a jamais suivi d&apos;école
-                d&apos;art. Elle a simplement continué à créer, envers et
-                contre tout.
-              </p>
-              <p>
-                La peinture, elle, arrive plus tard — dans la rupture. Le
-                diagnostic de cancer de son père, puis son départ trois mois
-                plus tard, la laissent sans souffle. Elle prend un pinceau
-                pour la première fois non pas pour faire joli, mais pour
-                survivre à ce qui n&apos;a pas de mots. Peindre devient une
-                manière de déposer ce qui pèse trop.
-              </p>
-              <p>
-                De cette ouverture naît une pratique multidisciplinaire : un
-                certificat en arts visuels, puis la photographie, la
-                sculpture, le tatouage. En 2014, elle organise son premier
-                événement artistique — un rassemblement d&apos;artistes
-                d&apos;ici, déjà une façon de bâtir une communauté plutôt
-                qu&apos;une carrière en solo. Son parcours se poursuit avec{" "}
-                <em>Toutes c&apos;Elles</em>, une exposition intime portée par
-                des histoires de femmes, de force et de transformation.
-              </p>
+              {content.storyParagraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
 
             <p className="mt-8 border-l border-ink/40 pl-6 font-display italic text-xl md:text-2xl leading-snug text-ink">
-              Renaître n&apos;est pas recommencer. Renaître, c&apos;est
-              devenir soi-même — même dans l&apos;imperfection.
+              {content.storyPullquote}
             </p>
           </div>
         </div>
@@ -182,30 +186,12 @@ export default function AProposPage() {
             Pourquoi ce nom
           </p>
           <h2 className="font-display text-3xl md:text-4xl leading-tight mb-8">
-            No Matter What. <span className="italic">Peu importe.</span>
+            {content.whyNameHeading} <span className="italic">{content.whyNameHeadingAccent}</span>
           </h2>
           <div className="flex flex-col gap-6 text-ink-soft/90 leading-[1.75]">
-            <p>
-              C&apos;est la phrase qui a porté Julie à travers la perte, le
-              doute, les recommencements — et c&apos;est celle qu&apos;elle a
-              choisie pour ouvrir un lieu. Pas un café de plus, mais une toile
-              grandeur nature : un endroit où l&apos;art, la matière et
-              l&apos;accueil vivent sous le même toit, avec la même logique
-              que sa peinture — laisser une place à ce qui est brut, vrai,
-              parfois imparfait.
-            </p>
-            <p>
-              C&apos;est ainsi qu&apos;est né ce{" "}
-              <strong className="font-semibold text-ink">
-                café à Sainte-Marthe-sur-le-Lac
-              </strong>
-              , au 3054A chemin d&apos;Oka, entre Deux-Montagnes et
-              Saint-Eustache, en plein cœur des Laurentides. NMW y a ouvert
-              ses portes le 3 juillet — un café de spécialité pensé comme une
-              extension de l&apos;atelier, où l&apos;on n&apos;entre pas
-              seulement pour commander un café, mais dans l&apos;univers
-              d&apos;une artiste.
-            </p>
+            {content.whyNameParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
         </div>
       </section>
@@ -259,10 +245,7 @@ export default function AProposPage() {
           <Logo variant="lockup" className="w-[min(58vw,340px)] h-auto" />
 
           <p className="mt-14 max-w-md text-paper-light/70 leading-relaxed">
-            NMW ne se raconte pas vraiment — ça se visite. Passez au 3054A
-            chemin d&apos;Oka, à Sainte-Marthe-sur-le-Lac, pour un café, une
-            œuvre ou un bouquet. Peu importe la raison : la porte s&apos;ouvre
-            pareil.
+            {content.closingText}
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">

@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, EB_Garamond, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import { CartProvider } from "@/components/cart/CartContext";
-import CartDrawer from "@/components/cart/CartDrawer";
-import { getInitialCart } from "@/lib/shopify/cart";
 
 /* Type system is derived from the logo, not chosen alongside it.
    The mark is set in Playfair Display (wordmark) and EB Garamond
@@ -43,26 +38,17 @@ export const metadata: Metadata = {
     "Un café de spécialité, une galerie d'art et un bar à fleurs sous un même toit, à Sainte-Marthe-sur-le-Lac, entre Deux-Montagnes et Saint-Eustache. Fondé par l'artiste Julie Lalonde — un mot d'ordre : peu importe, on ouvre.",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const initialCart = await getInitialCart();
-
   return (
     <html
       lang="fr-CA"
       className={`${playfair.variable} ${garamond.variable} ${plexMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-paper text-ink">
-        <CartProvider initialCart={initialCart}>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <CartDrawer />
-        </CartProvider>
-      </body>
+      <body className="min-h-full flex flex-col bg-paper text-ink">{children}</body>
     </html>
   );
 }
