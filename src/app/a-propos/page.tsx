@@ -12,24 +12,28 @@ const OFFRE = [
     text: "Cafés et matchas travaillés avec soin, smoothies, sandwichs grillés, croffles, salades fraîches et desserts maison.",
     href: "/menu",
     cta: "Voir le menu",
+    image: "/images/bar-cafe.jpg",
   },
   {
     title: "La galerie",
     text: "Les toiles de Julie habillent les murs entre les tables — l'art comme raison de s'attarder, pas comme décor.",
     href: "/galerie",
     cta: "Voir la galerie",
+    image: "/images/galerie-portrait-3.jpg",
   },
   {
     title: "Le bar à fleurs",
     text: "Roses éternelles sous cloche de verre, bouquets frais composés sur place, précommandes chaque semaine.",
     href: "/fleurs",
     cta: "Voir les fleurs",
+    image: "/images/fleurs-bouquet-mixte.jpg",
   },
   {
     title: "La boutique",
     text: "Céramique et créations choisies pour durer, plutôt que pour plaire une saison.",
     href: "/boutique",
     cta: "Voir la boutique",
+    image: "/images/boutique-2.jpg",
   },
 ] as const;
 
@@ -169,20 +173,33 @@ export default function AProposPage() {
             Ce qu&apos;on y trouve.
           </h2>
 
-          <div className="grid sm:grid-cols-2 gap-x-10 gap-y-12">
+          {/* Same clickable-card grammar as /boutique's grid — image,
+              hover-reveal cta caption, heading and text below — rather
+              than the plain text-plus-underline links this section used
+              before it had photos to show. */}
+          <div className="grid sm:grid-cols-2 gap-x-10 gap-y-14">
             {OFFRE.map((item) => (
-              <div key={item.title} className="border-t border-ink/10 pt-6">
-                <h3 className="font-display text-2xl mb-3">{item.title}</h3>
-                <p className="text-[0.95rem] text-ink-soft/80 leading-relaxed mb-4">
-                  {item.text}
-                </p>
-                <Link
-                  href={item.href}
-                  className="font-utility text-[11px] uppercase tracking-[0.16em] border-b border-ink pb-1"
-                >
-                  {item.cta} →
-                </Link>
-              </div>
+              <Link key={item.title} href={item.href} className="group block">
+                <div className="relative aspect-[4/5] overflow-hidden grain border border-ink/10">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(min-width: 640px) 45vw, 90vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/0 to-ink/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="absolute bottom-4 left-4 font-utility text-[11px] uppercase tracking-[0.16em] text-paper-light opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                    {item.cta} →
+                  </span>
+                </div>
+                <div className="mt-6">
+                  <h3 className="font-display text-2xl mb-3">{item.title}</h3>
+                  <p className="text-[0.95rem] text-ink-soft/80 leading-relaxed">
+                    {item.text}
+                  </p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
