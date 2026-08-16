@@ -99,11 +99,21 @@ export default function Header() {
           <button
             type="button"
             onClick={openCart}
-            className={`font-utility text-[11px] uppercase tracking-[0.16em] transition-colors ${
+            aria-label={
+              totalQuantity > 0
+                ? `Panier — ${totalQuantity} article${totalQuantity > 1 ? "s" : ""}`
+                : "Panier"
+            }
+            className={`relative transition-colors ${
               solid ? "text-grey-700 hover:text-ink" : "text-paper-light/85 hover:text-paper-light"
             }`}
           >
-            Panier{totalQuantity > 0 && ` (${totalQuantity})`}
+            <CartIcon className="h-[18px] w-[18px]" />
+            {totalQuantity > 0 && (
+              <span className="absolute -top-1.5 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-ink px-1 font-utility text-[9px] leading-none text-paper-light">
+                {totalQuantity}
+              </span>
+            )}
           </button>
 
           <Link
