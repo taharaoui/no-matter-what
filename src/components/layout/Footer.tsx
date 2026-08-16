@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import Logo from "@/components/brand/Logo";
+import { ADDRESS_LINES, HOURS_LINES } from "@/lib/business";
 
 export default function Footer() {
   const [sent, setSent] = useState(false);
@@ -30,10 +31,12 @@ export default function Footer() {
         <div>
           <p className="font-utility text-[11px] uppercase tracking-[0.16em] text-grey-300">Visiter</p>
           <ul className="mt-4 space-y-2 text-[0.95rem] text-paper-light/75">
-            <li>3054A Chemin d&apos;Oka</li>
-            <li>Sainte-Marthe-sur-le-Lac, QC J0N 1P0</li>
-            <li>Lun – Ven — 7h à 18h</li>
-            <li>Sam – Dim — 8h à 17h</li>
+            {ADDRESS_LINES.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+            {HOURS_LINES.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
           </ul>
         </div>
 

@@ -3,9 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import PageIntro from "@/components/layout/PageIntro";
 import Logo from "@/components/brand/Logo";
-
-const ADDRESS_QUERY = "3054A Chemin d'Oka, Sainte-Marthe-sur-le-Lac, QC J0N 1P0";
-const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS_QUERY)}`;
+import ContactForm from "@/components/contact/ContactForm";
+import { ADDRESS_LINES, HOURS_LINES, MAPS_URL } from "@/lib/business";
 
 const OFFRE = [
   {
@@ -185,6 +184,53 @@ export default function AProposPage() {
                 </Link>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Address + hours laid out plainly, and the one way to write in
+          instead of showing up — grey-100 breaks the paper/ink alternation
+          the same way "Pourquoi ce nom" does above it. */}
+      <section className="bg-grey-100 py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-2 gap-16">
+          <div>
+            <p className="font-utility text-[11px] uppercase tracking-[0.2em] text-grey-700 mb-4">
+              Nous trouver
+            </p>
+            <h2 className="font-display text-3xl md:text-4xl leading-tight mb-8">
+              Passez nous voir.
+            </h2>
+
+            <div className="text-ink-soft/90 leading-[1.75]">
+              {ADDRESS_LINES.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
+
+            <div className="mt-6 text-ink-soft/90 leading-[1.75]">
+              {HOURS_LINES.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
+
+            <a
+              href={MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex items-center border border-ink px-6 py-3 font-utility text-[11px] uppercase tracking-[0.16em] hover:bg-ink hover:text-paper-light transition-colors"
+            >
+              Obtenir l&apos;itinéraire
+            </a>
+          </div>
+
+          <div>
+            <p className="font-utility text-[11px] uppercase tracking-[0.2em] text-grey-700 mb-4">
+              Nous écrire
+            </p>
+            <h2 className="font-display text-3xl md:text-4xl leading-tight mb-8">
+              Une question, un projet ?
+            </h2>
+            <ContactForm />
           </div>
         </div>
       </section>
