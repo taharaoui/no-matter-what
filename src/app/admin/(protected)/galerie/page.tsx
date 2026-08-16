@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { getPieces } from "@/lib/gallery";
+import { getArtists, getPieces } from "@/lib/gallery";
 import { deletePieceAction } from "@/lib/gallery/actions";
 import { buttonClass } from "@/components/admin/formStyles";
 import ConfirmDeleteButton from "@/components/admin/ConfirmDeleteButton";
@@ -9,7 +9,11 @@ import ConfirmDeleteButton from "@/components/admin/ConfirmDeleteButton";
 export const metadata: Metadata = { title: "Galerie" };
 
 export default async function AdminGaleriePage() {
-  const pieces = await getPieces();
+  const [pieces, artists] = await Promise.all([getPieces(), getArtists()]);
+  /* piece.artist is the artist's slug, not a display name — same
+     lookup every public consumer does (see WallLabel.tsx, /galerie).
+     The list here was printing the raw slug before this fix. */
+  const artistNameBySlug = Object.fromEntries(artists.map((a) => [a.slug, a.name]));
 
   return (
     <div>
@@ -44,7 +48,7 @@ export default async function AdminGaleriePage() {
               <div className="flex-1 min-w-0">
                 <p className="font-display text-lg leading-snug truncate">{piece.title}</p>
                 <p className="font-utility text-[11px] uppercase tracking-[0.1em] text-ink-soft/50">
-                  {piece.artist}
+                  {artistNameBySlug[piece.artist] ?? piece.artist}
                   {piece.sold ? " — Vendue" : ""}
                 </p>
               </div>
