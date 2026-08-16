@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "@/components/brand/Logo";
+import CartIcon from "@/components/icons/CartIcon";
 import { useCart } from "@/components/cart/CartContext";
 
 const LINKS = [
@@ -121,23 +122,50 @@ export default function Header() {
           <button
             type="button"
             onClick={openCart}
-            className={`font-utility text-[11px] uppercase tracking-[0.16em] transition-colors ${
-              solid ? "text-ink" : "text-paper-light"
-            }`}
+            aria-label={
+              totalQuantity > 0
+                ? `Panier — ${totalQuantity} article${totalQuantity > 1 ? "s" : ""}`
+                : "Panier"
+            }
+            className={`relative transition-colors ${solid ? "text-ink" : "text-paper-light"}`}
           >
-            Panier{totalQuantity > 0 && ` (${totalQuantity})`}
+            <CartIcon className="h-5 w-5" />
+            {totalQuantity > 0 && (
+              <span className="absolute -top-1.5 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-ink px-1 font-utility text-[9px] leading-none text-paper-light">
+                {totalQuantity}
+              </span>
+            )}
           </button>
 
+          {/* Three-line "hamburger" that morphs into an X — plain divs
+              rather than an SVG, so each bar's own transform-origin is
+              unambiguous (an SVG <line>'s default origin box is the whole
+              viewport, not the line itself). */}
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="nav-mobile"
-            className={`font-utility text-[11px] uppercase tracking-[0.16em] transition-colors ${
-              solid ? "text-ink" : "text-paper-light"
-            }`}
+            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            className={`transition-colors ${solid ? "text-ink" : "text-paper-light"}`}
           >
-            {open ? "Fermer" : "Menu"}
+            <span className="relative block h-4 w-5">
+              <span
+                className={`absolute left-0 h-px w-5 bg-current transition-all duration-300 ${
+                  open ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0"
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-1/2 h-px w-5 -translate-y-1/2 bg-current transition-opacity duration-200 ${
+                  open ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`absolute left-0 h-px w-5 bg-current transition-all duration-300 ${
+                  open ? "top-1/2 -translate-y-1/2 -rotate-45" : "bottom-0"
+                }`}
+              />
+            </span>
           </button>
         </div>
       </div>
