@@ -1,5 +1,6 @@
+import type { SupabaseClient } from "@supabase/supabase-js";
 import type { PlateTone } from "@/components/ui/Plate";
-import { getSupabase } from "./supabase";
+import { getSupabase } from "../supabase";
 
 /**
  * Real content, backed by Supabase (tables: artists, pieces — see the
@@ -46,7 +47,11 @@ export type Artist = {
   statement?: string;
 };
 
-type ArtistRow = {
+/* Exported (unlike menu's row types being export-only where the admin
+   needs them) since the admin form edits the exact same shape the public
+   read already returns raw — pieces/artists have no fields the public
+   type hides, so there's no separate "admin row" type needed here. */
+export type ArtistRow = {
   slug: string;
   name: string;
   based: string;
@@ -54,7 +59,7 @@ type ArtistRow = {
   statement: string | null;
 };
 
-type PieceRow = {
+export type PieceRow = {
   slug: string;
   title: string;
   artist_slug: string;
@@ -71,6 +76,7 @@ type PieceRow = {
   tone: string;
   format: string;
   featured: boolean;
+  sort_order: number;
 };
 
 function reshapeArtist(row: ArtistRow): Artist {
@@ -166,6 +172,49 @@ export async function getPieceBySlug(slug: string): Promise<Piece | null> {
     console.error("[supabase] getPieceBySlug failed:", err);
     return null;
   }
+}
+
+/* --- Admin writes below. Same split as lib/menu: reads degrade to empty,
+   writes throw and take an authenticated, request-scoped client rather
+   than the anon singleton, so RLS sees the real signed-in admin. Artist
+   CRUD isn't built here — Julie is the one artist on the wall today, and
+   that wasn't part of the requested scope; pieces (the actual "artworks"
+   the brief asked for) are what's editable. */
+
+export async function getPieceRowBySlug(slug: string): Promise<PieceRow | null> {
+  try {
+    const { data, error } = await getSupabase()
+      .from("pieces")
+      .select("*")
+      .eq("slug", slug)
+      .maybeSingle();
+    if (error) throw error;
+    return data as PieceRow | null;
+  } catch (err) {
+    console.error("[supabase] getPieceRowBySlug failed:", err);
+    return null;
+  }
+}
+
+export type PieceInput = PieceRow;
+
+export async function createPiece(db: SupabaseClient, input: PieceInput): Promise<void> {
+  const { error } = await db.from("pieces").insert(input);
+  if (error) throw error;
+}
+
+export async function updatePiece(
+  db: SupabaseClient,
+  slug: string,
+  input: Partial<PieceInput>
+): Promise<void> {
+  const { error } = await db.from("pieces").update(input).eq("slug", slug);
+  if (error) throw error;
+}
+
+export async function deletePiece(db: SupabaseClient, slug: string): Promise<void> {
+  const { error } = await db.from("pieces").delete().eq("slug", slug);
+  if (error) throw error;
 }
 
 /** The page's opening section. Permanent wall, not a dated accrochage.

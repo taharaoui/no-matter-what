@@ -8,6 +8,15 @@ const nextConfig: NextConfig = {
         hostname: "cdn.shopify.com",
         pathname: "/s/files/**",
       },
+      {
+        // Supabase Storage — images uploaded through /admin land here
+        // instead of public/images/*.jpg, both for the admin's own
+        // previews and wherever the public site renders that same URL
+        // (menu items, gallery pieces).
+        protocol: "https",
+        hostname: "vrswphioblmtaocbxvzz.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
     ],
   },
   // /histoire told the old placeholder three-generations story and was
