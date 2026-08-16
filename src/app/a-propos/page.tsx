@@ -53,6 +53,54 @@ export default function AProposPage() {
         lede="L'histoire de Julie Lalonde, et de la porte qu'elle a choisi d'ouvrir."
       />
 
+      {/* Address + hours laid out plainly, and the one way to write in
+          instead of showing up — surfaced right after the intro rather
+          than buried at the bottom, since "where are you" and "how do I
+          reach you" are what a visitor to this page wants first. */}
+      <section className="bg-grey-100 py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-2 gap-16">
+          <div>
+            <p className="font-utility text-[11px] uppercase tracking-[0.2em] text-grey-700 mb-4">
+              Nous trouver
+            </p>
+            <h2 className="font-display text-3xl md:text-4xl leading-tight mb-8">
+              Passez nous voir.
+            </h2>
+
+            <div className="text-ink-soft/90 leading-[1.75]">
+              {ADDRESS_LINES.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
+
+            <div className="mt-6 text-ink-soft/90 leading-[1.75]">
+              {HOURS_LINES.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
+
+            <a
+              href={MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex items-center border border-ink px-6 py-3 font-utility text-[11px] uppercase tracking-[0.16em] hover:bg-ink hover:text-paper-light transition-colors"
+            >
+              Obtenir l&apos;itinéraire
+            </a>
+          </div>
+
+          <div>
+            <p className="font-utility text-[11px] uppercase tracking-[0.2em] text-grey-700 mb-4">
+              Nous écrire
+            </p>
+            <h2 className="font-display text-3xl md:text-4xl leading-tight mb-8">
+              Une question, un projet ?
+            </h2>
+            <ContactForm />
+          </div>
+        </div>
+      </section>
+
       {/* The one sentence the name is built on — same treatment as the
           homepage Manifesto section, scoped to this page. */}
       <section className="bg-ink text-paper-light py-20 md:py-28">
@@ -201,53 +249,6 @@ export default function AProposPage() {
                 </div>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Address + hours laid out plainly, and the one way to write in
-          instead of showing up — grey-100 breaks the paper/ink alternation
-          the same way "Pourquoi ce nom" does above it. */}
-      <section className="bg-grey-100 py-24 md:py-32">
-        <div className="mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-2 gap-16">
-          <div>
-            <p className="font-utility text-[11px] uppercase tracking-[0.2em] text-grey-700 mb-4">
-              Nous trouver
-            </p>
-            <h2 className="font-display text-3xl md:text-4xl leading-tight mb-8">
-              Passez nous voir.
-            </h2>
-
-            <div className="text-ink-soft/90 leading-[1.75]">
-              {ADDRESS_LINES.map((line) => (
-                <p key={line}>{line}</p>
-              ))}
-            </div>
-
-            <div className="mt-6 text-ink-soft/90 leading-[1.75]">
-              {HOURS_LINES.map((line) => (
-                <p key={line}>{line}</p>
-              ))}
-            </div>
-
-            <a
-              href={MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center border border-ink px-6 py-3 font-utility text-[11px] uppercase tracking-[0.16em] hover:bg-ink hover:text-paper-light transition-colors"
-            >
-              Obtenir l&apos;itinéraire
-            </a>
-          </div>
-
-          <div>
-            <p className="font-utility text-[11px] uppercase tracking-[0.2em] text-grey-700 mb-4">
-              Nous écrire
-            </p>
-            <h2 className="font-display text-3xl md:text-4xl leading-tight mb-8">
-              Une question, un projet ?
-            </h2>
-            <ContactForm />
           </div>
         </div>
       </section>
